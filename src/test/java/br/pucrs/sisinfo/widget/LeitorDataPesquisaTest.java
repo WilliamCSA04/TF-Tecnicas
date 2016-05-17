@@ -1,14 +1,19 @@
 package br.pucrs.sisinfo.widget;
 
+import br.pucrs.sisinfo.exceptions.InterpretadorException;
+import br.pucrs.sisinfo.interpretadores.Interpretador;
+import br.pucrs.sisinfo.interpretadores.InterpretadorDeDataBrasileira;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
 import java.util.GregorianCalendar;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LeitorDataPesquisaTest {
 
@@ -26,8 +31,15 @@ public class LeitorDataPesquisaTest {
 
     @Test
     public void exibeDeveEscreverMensagemEsperadaNaSaidaDoTerminal() throws Exception {
-        Scanner leitorTerminal = new Scanner(simularEntradaDoUsuario(""));
-        LeitorEntrada leitorData = new LeitorDataPesquisa(leitorTerminal);
+        Scanner leitorTerminal = new Scanner(simularEntradaDoUsuario("\n"));
+        LeitorEntrada leitorData = new LeitorDataPesquisa(leitorTerminal, new Interpretador<GregorianCalendar>() {
+
+            @Override
+            public GregorianCalendar interpretar(String padrao) throws InterpretadorException {
+                return null;
+            }
+        });
+
         String mensagemEsperada = "Digite uma data para pesquisar voos:";
 
         leitorData.exibir();
@@ -41,11 +53,18 @@ public class LeitorDataPesquisaTest {
     public void lerDeveRetornarDataCorreta() throws Exception {
         GregorianCalendar dataEsperada = new GregorianCalendar(2016, 4, 17);
         Scanner leitorTerminal = new Scanner(simularEntradaDoUsuario("17/05/2016"));
-        LeitorDataPesquisa leitorData = new LeitorDataPesquisa(leitorTerminal);
+        LeitorDataPesquisa leitorData = new LeitorDataPesquisa(leitorTerminal, new Interpretador<GregorianCalendar>() {
+            @Override
+            public GregorianCalendar interpretar(String padrao) throws InterpretadorException {
+                return new GregorianCalendar(2016, 4, 17);
+            }
+        });
 
-        GregorianCalendar dataLida = leitorData.ler();
+        Optional<GregorianCalendar> dataLida = leitorData.ler();
 
-        assertEquals(dataEsperada, dataLida);
+        assertTrue(dataLida.isPresent());
+
+        assertEquals(dataEsperada, dataLida.get());
 
     }
 
