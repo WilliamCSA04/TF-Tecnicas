@@ -2,3 +2,4 @@ j-airlines.iml
 j-airlines.ipr
 j-airlines.iws
 build/
+.gradle/**/taskArtifacts/*
