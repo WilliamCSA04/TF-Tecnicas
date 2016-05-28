@@ -1,24 +1,37 @@
 package br.pucrs.sisinfo.view;
 
-import br.pucrs.sisinfo.model.Voo;
-import java.util.Arrays;
-import java.util.List;
+import br.pucrs.sisinfo.app.GuiceConfig;
+import br.pucrs.sisinfo.controller.PesquisaController;
+import br.pucrs.sisinfo.interpretadores.Interpretador;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import java.util.GregorianCalendar;
+import java.util.Optional;
+import javax.inject.Named;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 public class Pesquisa extends javax.swing.JFrame {
     
-    private final List<Voo> voos;
+    private final PesquisaController controller;
+    private final Interpretador<Optional<GregorianCalendar>> interpretador;
     
     private TableModel tableModelVoos;
-
-    public Pesquisa() {
-        voos = Arrays.asList(
-                new Voo("Voo 1"),
-                new Voo("Voo 2"),
-                new Voo("Voo 3")
-        );
         
-        tableModelVoos = new VooTableModel(voos);
+    @Inject
+    public Pesquisa(
+            
+            PesquisaController controller, 
+           
+            @Named("interpretadorData") 
+            Interpretador<Optional<GregorianCalendar>> interpretador) {
+        
+        this.controller = controller;
+        this.interpretador = interpretador;
+
+     
+        tableModelVoos = new VooTableModel();
         
         initComponents();
     }
@@ -32,7 +45,7 @@ public class Pesquisa extends javax.swing.JFrame {
         buttonPesquisar = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable(tableModelVoos);
+        tabelaVoos = new javax.swing.JTable(tableModelVoos);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +62,7 @@ public class Pesquisa extends javax.swing.JFrame {
         labelTitulo.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labelTitulo.setText("Pesquisa de Voos");
 
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tabelaVoos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +100,14 @@ public class Pesquisa extends javax.swing.JFrame {
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
         
+        Optional<GregorianCalendar> dataDigitada = interpretador.interpretar(textFieldPesquisar.getText());
+        
+        if (!dataDigitada.isPresent()) {
+            JOptionPane.showMessageDialog(this, "Data inválida");
+        } else {
+            tabelaVoos.setModel(new VooTableModel(controller.buscaVoosPorData(dataDigitada)));
+        }
+        
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
 
@@ -111,7 +132,12 @@ public class Pesquisa extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pesquisa().setVisible(true);
+                
+                Injector injector = Guice.createInjector(new GuiceConfig());
+                
+                Pesquisa pesquisa = injector.getInstance(Pesquisa.class);
+                        
+                pesquisa.setVisible(true);
             }
         });
     }
@@ -119,9 +145,9 @@ public class Pesquisa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonPesquisar;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelPesquisar;
     private javax.swing.JLabel labelTitulo;
+    private javax.swing.JTable tabelaVoos;
     private javax.swing.JTextField textFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }
