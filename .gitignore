@@ -3,3 +3,4 @@ j-airlines.ipr
 j-airlines.iws
 build/
 .gradle/**/taskArtifacts/*
+/.nb-gradle/
