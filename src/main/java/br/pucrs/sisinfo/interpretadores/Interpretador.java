@@ -1,8 +1,7 @@
 package br.pucrs.sisinfo.interpretadores;
 
-import br.pucrs.sisinfo.exceptions.InterpretadorException;
-
+@FunctionalInterface
 public interface Interpretador<T> {
 
-    T interpretar(String padrao) throws InterpretadorException;
+    T interpretar(String padrao);
 }

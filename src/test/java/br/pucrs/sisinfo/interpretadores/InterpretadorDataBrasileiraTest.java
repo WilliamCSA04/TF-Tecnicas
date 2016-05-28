@@ -5,12 +5,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class InterpretadorDataBrasileiraTest {
 
-    private Interpretador<GregorianCalendar> interpretador;
+    private Interpretador<Optional<GregorianCalendar>> interpretador;
 
     @Before
     public void setUp() throws Exception {
@@ -19,21 +22,26 @@ public class InterpretadorDataBrasileiraTest {
 
     @Test
     public void interpretarDeveRetornarDataCorreta() throws Exception {
-
+        
         GregorianCalendar dataEsperada = new GregorianCalendar(2016,4,17);
 
-        GregorianCalendar dataInterpretada = interpretador.interpretar("17/05/2016");
-
-        assertEquals(dataEsperada, dataInterpretada);
+        Optional<GregorianCalendar> dataInterpretada = interpretador.interpretar("17/05/2016");
+        
+        assertTrue(dataInterpretada.isPresent());
+        assertEquals(dataEsperada, dataInterpretada.get());
     }
 
-    @Test(expected = InterpretadorException.class)
-    public void interpretarDeveCausarUmaExcecaoPorPadraoInvalido() throws Exception {
-        interpretador.interpretar("adasd");
+    @Test
+    public void interpretarDeveRetornarOptionalVazioSeOPadraoEstaErrado() throws Exception {
+        Optional data = interpretador.interpretar("adasd");
+        
+        assertFalse(data.isPresent());
     }
 
-    @Test(expected = InterpretadorException.class)
-    public void interpretarDeveCausarUmaExcecaoPorValorDeDataInvalido() throws Exception {
-        interpretador.interpretar("50/02/2019");
+    @Test
+    public void interpretarDeveRetornarOptionalVazioSeADataForInvalida() throws Exception {
+        Optional data = interpretador.interpretar("50/02/2019");
+        
+        assertFalse(data.isPresent());
     }
 }
