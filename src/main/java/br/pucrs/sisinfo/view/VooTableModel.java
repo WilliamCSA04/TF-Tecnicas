@@ -1,15 +1,22 @@
 package br.pucrs.sisinfo.view;
 
 import br.pucrs.sisinfo.model.Voo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class VooTableModel extends AbstractTableModel{
     
+    private static final String [] NOMES_COLUNAS = { "Nome" };
+    
     private List<Voo> voos;
 
     public VooTableModel(List<Voo> voos) {
         this.voos = voos;
+    }
+
+    public VooTableModel() {
+        this.voos = new ArrayList<>();
     }
     
     @Override
@@ -19,12 +26,12 @@ public class VooTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 1;
+        return NOMES_COLUNAS.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return "Nome";
+        return NOMES_COLUNAS[columnIndex];
     }
 
     @Override
@@ -44,7 +51,7 @@ public class VooTableModel extends AbstractTableModel{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
