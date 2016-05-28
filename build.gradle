@@ -7,5 +7,6 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.inject:guice:4.0-beta5'
     testCompile 'junit:junit:4.12'
 }
