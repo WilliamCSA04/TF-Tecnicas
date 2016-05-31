@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.view;
 
-import br.pucrs.sisinfo.app.GuiceConfig;
+import br.pucrs.sisinfo.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.controller.PesquisaController;
 import br.pucrs.sisinfo.interpretadores.Interpretador;
 import com.google.inject.Guice;

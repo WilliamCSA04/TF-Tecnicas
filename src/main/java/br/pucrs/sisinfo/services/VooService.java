@@ -2,11 +2,11 @@ package br.pucrs.sisinfo.services;
 
 import br.pucrs.sisinfo.model.Voo;
 
-import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public interface VooService {
 
-    Collection<Voo> buscaTodosPorData(GregorianCalendar data);
+    List<Voo> buscaPorData(GregorianCalendar data);
 
 }
