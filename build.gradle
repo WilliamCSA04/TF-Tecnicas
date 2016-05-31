@@ -3,10 +3,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
     compile 'com.google.inject:guice:4.0-beta5'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
     testCompile 'junit:junit:4.12'
 }
