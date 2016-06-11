@@ -1,7 +1,7 @@
 package br.pucrs.sisinfo.model;
 
 public class Voo {
-
+    
     private String nome;
 
     public Voo(String nome) {
