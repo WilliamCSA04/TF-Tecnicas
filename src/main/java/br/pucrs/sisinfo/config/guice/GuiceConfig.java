@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.util.GregorianCalendar;
 import java.util.Optional;
 import br.pucrs.sisinfo.config.providers.ConnectionProvider;
+import br.pucrs.sisinfo.dao.AeroportoDao;
+import br.pucrs.sisinfo.dao.AeroportoDaoJdbc;
+import br.pucrs.sisinfo.dao.CompanhiaAereaDao;
+import br.pucrs.sisinfo.dao.CompanhiaAereaDaoJdbc;
 import com.google.inject.Scopes;
-
 
 public class GuiceConfig extends AbstractModule{
    
@@ -24,6 +27,13 @@ public class GuiceConfig extends AbstractModule{
         bind(Connection.class)
                 .toProvider(ConnectionProvider.class)
                 .in(Scopes.SINGLETON);
+        
+        bind(AeroportoDao.class)
+                .to(AeroportoDaoJdbc.class);
+        
+        bind(CompanhiaAereaDao.class)
+                .to(CompanhiaAereaDaoJdbc.class);
+               
                 
     }
     
