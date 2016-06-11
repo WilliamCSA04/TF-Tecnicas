@@ -1,10 +1,15 @@
 package br.pucrs.sisinfo.app;
 
 import br.pucrs.sisinfo.config.guice.GuiceConfig;
+import br.pucrs.sisinfo.seeding.insertions.AeroportoFileSeed;
+import br.pucrs.sisinfo.seeding.insertions.CompanhiaAereaFileSeed;
+import br.pucrs.sisinfo.seeding.insertions.Seeding;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.Arrays;
 
 
 public class JAirlines {
@@ -16,15 +21,18 @@ public class JAirlines {
         this.connection = connection;
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         Injector injector = Guice.createInjector(new GuiceConfig());
         
-        JAirlines airlines = injector.getInstance(JAirlines.class);
-        JAirlines airlines2 = injector.getInstance(JAirlines.class);
+        AeroportoFileSeed aeroSeed = injector.getInstance(AeroportoFileSeed.class);
+        CompanhiaAereaFileSeed companhiaSeed = injector.getInstance(CompanhiaAereaFileSeed.class);
         
-        System.out.println(airlines.connection == airlines2.connection);
+        Seeding seeding = injector.getInstance(Seeding.class);
         
+        seeding.setSeeds(Arrays.asList(aeroSeed, companhiaSeed));
+        
+        seeding.seed();        
     }
 
 }
