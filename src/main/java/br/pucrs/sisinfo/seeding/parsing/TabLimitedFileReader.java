@@ -1,7 +1,6 @@
 package br.pucrs.sisinfo.seeding.parsing;
 
 import java.util.List;
-import br.pucrs.sisinfo.model.CrudModel;
 import com.google.inject.Inject;
 import java.io.IOException;
 import java.nio.charset.Charset;

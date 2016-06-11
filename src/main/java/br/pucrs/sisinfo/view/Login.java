@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    private final static String emailRegularExpression = "^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\\.)+[A-Z]{2,}$";
     @Inject
     public Login() {
         initComponents();
@@ -102,28 +101,31 @@ public class Login extends javax.swing.JFrame {
 
     private void logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logarActionPerformed
 
-        if (!validadorEmail(emailText.getText().toUpperCase())) {
-            JOptionPane.showMessageDialog(rootPane, "Email invalido", "Login", 0);
-        } else {
-            boolean validador = new LoginController().buscaUsuario(emailText.getText(), senhaText.getText());
-            if (validador) {
+        int validador = new LoginController().buscaUsuario(emailText.getText(), senhaText.getText());
+        switch (validador) {
+            case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", 0);
-            } else {
+                break;
+            case 0:
+
+                try {
+                    JOptionPane.showMessageDialog(rootPane, new String("Formatação de email invalido".getBytes(), "UTF-8"), "Login", 0);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+            case -1:
                 try {
                     JOptionPane.showMessageDialog(rootPane, new String("Login senha ou email estão errados".getBytes(), "UTF-8"), "Login invalido", 0);
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+                break;
         }
 
-    }//GEN-LAST:event_logarActionPerformed
 
-    private boolean validadorEmail(String email) {
-        Pattern pattern = Pattern.compile(emailRegularExpression);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
+    }//GEN-LAST:event_logarActionPerformed
 
     /**
      * @param args the command line arguments
