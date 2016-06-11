@@ -5,6 +5,7 @@
  */
 package br.pucrs.sisinfo.controller;
 
+import br.pucrs.sisinfo.model.Login;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,13 +17,20 @@ import java.util.regex.Pattern;
 public class LoginController {
     
     private final static String emailRegularExpression = "^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\\.)+[A-Z]{2,}$";
+    private Login model;
+
+    public LoginController() {
+        model = new Login();
+    }
+    
     
     
     public int buscaUsuario(String email, String senha){
         if(!validadorEmail(email.toUpperCase())){
             return 0;
         }
-        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){
+        //Tirar primeiro operador do || após a finalização do metodo de chegarLogin e seus dependencias.
+        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha") || model.checarLogin(email)){
             return 1;
         }
         return -1;
