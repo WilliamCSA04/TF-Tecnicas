@@ -7,12 +7,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.inject.Named;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
+    public final LoginController controller = new LoginController();
+    
+    //TODO: Adicionar a injeção de dependencias no contrutor
     @Inject
     public Login() {
+ 
+        
         initComponents();
     }
 
@@ -109,7 +115,7 @@ public class Login extends javax.swing.JFrame {
             case 0:
 
                 try {
-                    JOptionPane.showMessageDialog(rootPane, new String("Formatação de email invalido".getBytes(), "UTF-8"), "Login", 0);
+                    JOptionPane.showMessageDialog(rootPane, controller.encodeString("Formatação de email invalido"), "Login", 0);
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -117,7 +123,7 @@ public class Login extends javax.swing.JFrame {
                 break;
             case -1:
                 try {
-                    JOptionPane.showMessageDialog(rootPane, new String("Login senha ou email estão errados".getBytes(), "UTF-8"), "Login invalido", 0);
+                    JOptionPane.showMessageDialog(rootPane, controller.encodeString("Login senha ou email estão errados"), "Login invalido", 0);
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
