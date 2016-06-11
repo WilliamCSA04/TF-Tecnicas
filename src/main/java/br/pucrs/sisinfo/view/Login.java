@@ -31,8 +31,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         emailText = new javax.swing.JTextField();
-        senhaText = new javax.swing.JTextField();
         logar = new javax.swing.JButton();
+        senhaText = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,12 +42,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Email");
 
         jLabel4.setText("Password");
-
-        senhaText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaTextActionPerformed(evt);
-            }
-        });
 
         logar.setText("Entrar");
         logar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,21 +55,17 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addComponent(logar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(emailText)
-                            .addComponent(senhaText, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(logar)))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(senhaText))
                 .addContainerGap(464, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,22 +82,18 @@ public class Login extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(senhaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(logar)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void senhaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaTextActionPerformed
-
     private void logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logarActionPerformed
 
-        int validador = new LoginController().buscaUsuario(emailText.getText(), senhaText.getText());
+        int validador = new LoginController().buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
         switch (validador) {
             case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", 0);
@@ -167,7 +153,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailText;
     private javax.swing.JLabel jLabel1;
@@ -175,6 +160,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton logar;
-    private javax.swing.JTextField senhaText;
+    private javax.swing.JPasswordField senhaText;
     // End of variables declaration//GEN-END:variables
 }

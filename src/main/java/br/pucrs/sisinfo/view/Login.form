@@ -24,25 +24,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="logar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailText" max="32767" attributes="0"/>
-                          <Component id="senhaText" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="logar" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="emailText" pref="119" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                  <Component id="senhaText" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="464" max="32767" attributes="0"/>
           </Group>
@@ -62,10 +55,10 @@
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Component id="senhaText" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="logar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="139" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="144" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,11 +86,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="emailText">
     </Component>
-    <Component class="javax.swing.JTextField" name="senhaText">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="senhaTextActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="logar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Entrar"/>
@@ -105,6 +93,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="senhaText">
     </Component>
   </SubComponents>
 </Form>
