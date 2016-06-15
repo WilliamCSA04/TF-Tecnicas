@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.pucrs.sisinfo.model;
+package br.pucrs.sisinfo.model.domain;
 
-import br.pucrs.sisinfo.dao.LoginDao;
+import br.pucrs.sisinfo.model.dao.LoginDao;
 
 /**
  *

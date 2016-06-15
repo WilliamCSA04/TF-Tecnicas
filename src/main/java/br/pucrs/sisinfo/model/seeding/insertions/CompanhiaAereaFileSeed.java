@@ -1,10 +1,10 @@
-package br.pucrs.sisinfo.seeding.insertions;
+package br.pucrs.sisinfo.model.seeding.insertions;
 
-import br.pucrs.sisinfo.dao.CompanhiaAereaDao;
-import br.pucrs.sisinfo.dao.Inserter;
-import br.pucrs.sisinfo.model.CompanhiaAerea;
-import br.pucrs.sisinfo.seeding.parsing.CompanhiaAereaLineParser;
-import br.pucrs.sisinfo.seeding.parsing.LineParser;
+import br.pucrs.sisinfo.model.dao.CompanhiaAereaDao;
+import br.pucrs.sisinfo.model.dao.Inserter;
+import br.pucrs.sisinfo.model.domain.CompanhiaAerea;
+import br.pucrs.sisinfo.model.seeding.parsing.CompanhiaAereaLineParser;
+import br.pucrs.sisinfo.model.seeding.parsing.LineParser;
 import com.google.inject.Inject;
 
 public class CompanhiaAereaFileSeed implements FileSeed<CompanhiaAerea> {

@@ -5,7 +5,7 @@
  */
 package br.pucrs.sisinfo.controller;
 
-import br.pucrs.sisinfo.model.Login;
+import br.pucrs.sisinfo.model.domain.Login;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

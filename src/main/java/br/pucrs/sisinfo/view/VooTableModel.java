@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.view;
 
-import br.pucrs.sisinfo.model.Voo;
+import br.pucrs.sisinfo.model.domain.Voo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

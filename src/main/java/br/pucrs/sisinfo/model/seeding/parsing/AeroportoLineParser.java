@@ -1,6 +1,6 @@
-package br.pucrs.sisinfo.seeding.parsing;
+package br.pucrs.sisinfo.model.seeding.parsing;
 
-import br.pucrs.sisinfo.model.Aeroporto;
+import br.pucrs.sisinfo.model.domain.Aeroporto;
 
 public class AeroportoLineParser implements LineParser<Aeroporto> {
     

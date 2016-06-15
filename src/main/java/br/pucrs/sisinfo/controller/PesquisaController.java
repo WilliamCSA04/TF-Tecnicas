@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.controller;
 
-import br.pucrs.sisinfo.model.Voo;
+import br.pucrs.sisinfo.model.domain.Voo;
 
 import java.util.*;
 

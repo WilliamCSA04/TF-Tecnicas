@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.dao;
+package br.pucrs.sisinfo.model.dao;
 
 public interface Inserter<T> {
     

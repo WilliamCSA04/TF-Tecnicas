@@ -8,11 +8,11 @@ import com.google.inject.name.Names;
 import java.sql.Connection;
 import java.util.GregorianCalendar;
 import java.util.Optional;
-import br.pucrs.sisinfo.config.providers.ConnectionProvider;
-import br.pucrs.sisinfo.dao.AeroportoDao;
-import br.pucrs.sisinfo.dao.AeroportoDaoJdbc;
-import br.pucrs.sisinfo.dao.CompanhiaAereaDao;
-import br.pucrs.sisinfo.dao.CompanhiaAereaDaoJdbc;
+import br.pucrs.sisinfo.config.guice.providers.ConnectionProvider;
+import br.pucrs.sisinfo.model.dao.AeroportoDao;
+import br.pucrs.sisinfo.model.dao.AeroportoDaoJdbc;
+import br.pucrs.sisinfo.model.dao.CompanhiaAereaDao;
+import br.pucrs.sisinfo.model.dao.CompanhiaAereaDaoJdbc;
 import com.google.inject.Scopes;
 
 public class GuiceConfig extends AbstractModule{

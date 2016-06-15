@@ -18,6 +18,8 @@ public class Pesquisa extends javax.swing.JFrame {
     private final Interpretador<Optional<GregorianCalendar>> interpretador;
     
     private TableModel tableModelVoos;
+    
+    private SelecionarAeroportoDialog selecionarAeroporto;
         
     @Inject
     public Pesquisa(
@@ -25,7 +27,8 @@ public class Pesquisa extends javax.swing.JFrame {
             PesquisaController controller, 
            
             @Named("interpretadorData") 
-            Interpretador<Optional<GregorianCalendar>> interpretador) {
+            Interpretador<Optional<GregorianCalendar>> interpretador
+    ) {
         
         this.controller = controller;
         this.interpretador = interpretador;
@@ -34,6 +37,9 @@ public class Pesquisa extends javax.swing.JFrame {
         tableModelVoos = new VooTableModel();
         
         initComponents();
+        
+        selecionarAeroporto = new SelecionarAeroportoDialog(this, true);
+        selecionarAeroporto.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

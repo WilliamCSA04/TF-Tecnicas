@@ -1,10 +1,10 @@
-package br.pucrs.sisinfo.seeding.insertions;
+package br.pucrs.sisinfo.model.seeding.insertions;
 
-import br.pucrs.sisinfo.dao.AeroportoDao;
-import br.pucrs.sisinfo.dao.Inserter;
-import br.pucrs.sisinfo.model.Aeroporto;
-import br.pucrs.sisinfo.seeding.parsing.AeroportoLineParser;
-import br.pucrs.sisinfo.seeding.parsing.LineParser;
+import br.pucrs.sisinfo.model.dao.AeroportoDao;
+import br.pucrs.sisinfo.model.dao.Inserter;
+import br.pucrs.sisinfo.model.domain.Aeroporto;
+import br.pucrs.sisinfo.model.seeding.parsing.AeroportoLineParser;
+import br.pucrs.sisinfo.model.seeding.parsing.LineParser;
 import com.google.inject.Inject;
 
 public class AeroportoFileSeed implements FileSeed<Aeroporto>{

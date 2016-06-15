@@ -1,6 +1,6 @@
-package br.pucrs.sisinfo.seeding.insertions;
+package br.pucrs.sisinfo.model.seeding.insertions;
 
-import br.pucrs.sisinfo.seeding.parsing.SimpleFileReader;
+import br.pucrs.sisinfo.model.seeding.parsing.SimpleFileReader;
 import com.google.inject.Inject;
 import java.io.IOException;
 import java.util.List;

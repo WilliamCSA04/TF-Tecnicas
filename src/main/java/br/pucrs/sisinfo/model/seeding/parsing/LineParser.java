@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.seeding.parsing;
+package br.pucrs.sisinfo.model.seeding.parsing;
 
 public interface LineParser<T> {
     

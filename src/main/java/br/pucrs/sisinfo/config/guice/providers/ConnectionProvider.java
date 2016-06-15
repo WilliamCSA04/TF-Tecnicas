@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.config.providers;
+package br.pucrs.sisinfo.config.guice.providers;
 
 import com.google.inject.Provider;
 import java.sql.Connection;

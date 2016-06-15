@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.seeding.parsing;
+package br.pucrs.sisinfo.model.seeding.parsing;
 
 import java.util.List;
 import java.io.IOException;

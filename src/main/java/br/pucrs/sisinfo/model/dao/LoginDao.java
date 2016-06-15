@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.pucrs.sisinfo.dao;
+package br.pucrs.sisinfo.model.dao;
 
 import java.util.List;
 

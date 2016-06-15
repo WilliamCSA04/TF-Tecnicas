@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.model;
+package br.pucrs.sisinfo.model.domain;
 
 
 public class CompanhiaAerea {

@@ -1,6 +1,6 @@
-package br.pucrs.sisinfo.dao;
+package br.pucrs.sisinfo.model.dao;
 
-import br.pucrs.sisinfo.model.Aeroporto;
+import br.pucrs.sisinfo.model.domain.Aeroporto;
 import com.google.inject.Inject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

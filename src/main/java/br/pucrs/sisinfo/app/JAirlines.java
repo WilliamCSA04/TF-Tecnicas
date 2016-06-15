@@ -1,9 +1,9 @@
 package br.pucrs.sisinfo.app;
 
 import br.pucrs.sisinfo.config.guice.GuiceConfig;
-import br.pucrs.sisinfo.seeding.insertions.AeroportoFileSeed;
-import br.pucrs.sisinfo.seeding.insertions.CompanhiaAereaFileSeed;
-import br.pucrs.sisinfo.seeding.insertions.Seeding;
+import br.pucrs.sisinfo.model.seeding.insertions.AeroportoFileSeed;
+import br.pucrs.sisinfo.model.seeding.insertions.CompanhiaAereaFileSeed;
+import br.pucrs.sisinfo.model.seeding.insertions.Seeding;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;

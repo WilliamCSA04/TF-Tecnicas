@@ -1,6 +1,6 @@
-package br.pucrs.sisinfo.dao;
+package br.pucrs.sisinfo.model.dao;
 
-import br.pucrs.sisinfo.model.Voo;
+import br.pucrs.sisinfo.model.domain.Voo;
 import java.util.GregorianCalendar;
 import java.util.List;
 
