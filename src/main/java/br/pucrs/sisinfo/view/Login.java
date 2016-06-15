@@ -1,13 +1,11 @@
 package br.pucrs.sisinfo.view;
 
 import br.pucrs.sisinfo.controller.LoginController;
+import br.pucrs.sisinfo.helper.ApplicationHelper;
 import com.google.inject.Inject;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.inject.Named;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -101,7 +99,7 @@ public class Login extends javax.swing.JFrame {
             case 0:
 
                 try {
-                    JOptionPane.showMessageDialog(rootPane, controller.encodeString("Formatação de email invalido"), "Login", 0);
+                    JOptionPane.showMessageDialog(rootPane, ApplicationHelper.encodeString("Formatação de email invalido"), "Login", 0);
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -109,7 +107,7 @@ public class Login extends javax.swing.JFrame {
                 break;
             case -1:
                 try {
-                    JOptionPane.showMessageDialog(rootPane, controller.encodeString("Login senha ou email estão errados"), "Login invalido", 0);
+                    JOptionPane.showMessageDialog(rootPane, ApplicationHelper.encodeString("Login senha ou email estão errados"), "Login invalido", 0);
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
