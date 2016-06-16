@@ -42,8 +42,6 @@ public class LoginController {
         return matcher.matches();
     }
     
-    public String encodeString(String s) throws UnsupportedEncodingException{
-        return new String(s.getBytes(), "UTF-8");
-    }
+    
     
 }
