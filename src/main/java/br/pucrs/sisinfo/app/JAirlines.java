@@ -1,9 +1,8 @@
 package br.pucrs.sisinfo.app;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
-import br.pucrs.sisinfo.persistencia.seeding.insertions.AeroportoFileSeed;
-import br.pucrs.sisinfo.persistencia.seeding.insertions.CompanhiaAereaFileSeed;
-import br.pucrs.sisinfo.persistencia.seeding.insertions.Seeding;
+import br.pucrs.sisinfo.persistencia.seeding.AeroportoFileSeed;
+import br.pucrs.sisinfo.persistencia.seeding.Seeding;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -26,11 +25,10 @@ public class JAirlines {
         Injector injector = Guice.createInjector(new GuiceConfig());
         
         AeroportoFileSeed aeroSeed = injector.getInstance(AeroportoFileSeed.class);
-        CompanhiaAereaFileSeed companhiaSeed = injector.getInstance(CompanhiaAereaFileSeed.class);
         
         Seeding seeding = injector.getInstance(Seeding.class);
         
-        seeding.setSeeds(Arrays.asList(aeroSeed, companhiaSeed));
+        seeding.setSeeds(Arrays.asList(aeroSeed));
         
         seeding.seed();        
     }
