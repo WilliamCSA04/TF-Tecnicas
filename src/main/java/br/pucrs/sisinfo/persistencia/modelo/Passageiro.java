@@ -11,12 +11,12 @@ package br.pucrs.sisinfo.persistencia.modelo;
  *
  * @author Joseane Wichrowski
  */
-public class Login {
+public class Passageiro {
 
     private String email;
     private String senha;
 
-    public Login(String email, String senha) {
+    public Passageiro(String email, String senha) {
         this.email = email;
         this.senha = senha;
     }

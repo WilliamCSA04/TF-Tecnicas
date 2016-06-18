@@ -1,15 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.pucrs.sisinfo.negocio.controller;
 
-import br.pucrs.sisinfo.persistencia.modelo.Login;
+import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ *
+ * @author Joseane Wichrowski
+ */
 public class LoginController {
     
     private final static String emailRegularExpression = "^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\\.)+[A-Z]{2,}$";
-    private Login model;
+    private Passageiro model;
 
     public LoginController() {
 
@@ -21,6 +29,7 @@ public class LoginController {
         if(!validadorEmail(email.toUpperCase())){
             return 0;
         }
+        //Tirar primeiro operador do || após a finalização do metodo de chegarLogin e seus dependencias.
         if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){
             return 1;
         }

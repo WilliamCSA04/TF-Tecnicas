@@ -5,14 +5,14 @@
  */
 package br.pucrs.sisinfo.persistencia.dao;
 
-import br.pucrs.sisinfo.persistencia.modelo.Login;
+import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
 
 /**
  *
  * @author Dell Inc
  */
 
-public interface PassageirosDao extends Inserter<Login>{
+public interface PassageirosDao extends Inserter<Passageiro>{
 
     
 }
