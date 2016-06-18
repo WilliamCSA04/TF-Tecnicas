@@ -3,6 +3,7 @@ package br.pucrs.sisinfo.apresentacao;
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.PesquisaController;
 import br.pucrs.sisinfo.negocio.services.interpretadores.Interpretador;
+import br.pucrs.sisinfo.persistencia.dao.AeroportoDao;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -20,11 +21,14 @@ public class Pesquisa extends javax.swing.JFrame {
     private TableModel tableModelVoos;
     
     private SelecionarAeroportoDialog selecionarAeroporto;
+    private AeroportoDao dao;
         
     @Inject
     public Pesquisa(
             
             PesquisaController controller, 
+            
+            AeroportoDao dao,
            
             @Named("interpretadorData") 
             Interpretador<Optional<GregorianCalendar>> interpretador
@@ -32,13 +36,15 @@ public class Pesquisa extends javax.swing.JFrame {
         
         this.controller = controller;
         this.interpretador = interpretador;
-
+        this.dao = dao;
      
         tableModelVoos = new VooTableModel();
         
         initComponents();
         
-        selecionarAeroporto = new SelecionarAeroportoDialog(this, true);
+        selecionarAeroporto = new SelecionarAeroportoDialog(this, dao);
+        selecionarAeroporto.setResizable(false);
+        selecionarAeroporto.setModal(true);
         selecionarAeroporto.setVisible(true);
     }
 

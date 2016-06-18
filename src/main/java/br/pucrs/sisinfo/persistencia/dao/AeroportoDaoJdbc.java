@@ -13,7 +13,9 @@ import java.util.logging.Logger;
 
 public class AeroportoDaoJdbc implements AeroportoDao{
     
+    private static final String LIKE_FILTER = "%__text__%";
     private static final String SELECT = "SELECT id, nome FROM aeroportos";
+    private static final String FIND_BY_NOME = "SELECT id, nome FROM aeroportos where LOWER(nome) LIKE ? OR LOWER(id) LIKE ?";
     private static final String INSERT = "INSERT INTO aeroportos (id, nome) VALUES(?, ?)";
     
     private Connection conexao;
@@ -26,12 +28,32 @@ public class AeroportoDaoJdbc implements AeroportoDao{
     
     @Override
     public List<Aeroporto> todos() {
+        return buscar(SELECT);
+    }
+
+    @Override
+    public List<Aeroporto> buscarPorNome(String nome) {
+        return buscar(
+                FIND_BY_NOME, 
+                LIKE_FILTER.replace("__text__", nome).toLowerCase(),
+                LIKE_FILTER.replace("__text__", nome).toLowerCase());
+    }
+    
+    
+    private List<Aeroporto> buscar(String query, Object ... params) {
         
         List<Aeroporto> aeroportos = new ArrayList<>();
         
         try {
             
-            PreparedStatement statement = conexao.prepareStatement(SELECT);
+            PreparedStatement statement = conexao.prepareStatement(query);
+            
+            if (params != null) {
+                
+                for (int i = 0; i < params.length; i++) {
+                    statement.setObject(i + 1, params[i]);
+                }
+            }
             
             ResultSet result = statement.executeQuery();
             
@@ -49,11 +71,6 @@ public class AeroportoDaoJdbc implements AeroportoDao{
         }
         
         return aeroportos;
-    }
-
-    @Override
-    public List<Aeroporto> buscarPorNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
