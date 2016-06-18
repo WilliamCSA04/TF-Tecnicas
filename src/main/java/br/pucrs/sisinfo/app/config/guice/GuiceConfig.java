@@ -33,9 +33,6 @@ public class GuiceConfig extends AbstractModule{
         
         bind(RotaDao.class)
                 .to(RotaDaoJdbc.class);
-        
-
-               
                 
     }
     
