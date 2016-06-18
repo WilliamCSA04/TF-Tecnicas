@@ -6,19 +6,63 @@
 
 package br.pucrs.sisinfo.persistencia.modelo;
 
+import java.util.GregorianCalendar;
+
 
 /**
  *
- * @author Joseane Wichrowski
+ * Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Email, RG, CPF, Passaporte, Senha
  */
 public class Passageiro {
 
+    private String nome;
+    private String sobrenome;
+    private char genero;
+    private GregorianCalendar dataNascimento;
     private String email;
+    private String rg;
+    private String cpf;
+    private String passaporte;
     private String senha;
 
-    public Passageiro(String email, String senha) {
+    public Passageiro(String nome, String sobrenome, char genero, GregorianCalendar dataNascimento, String email, String rg, String cpf, String passaporte, String senha) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
         this.email = email;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.passaporte = passaporte;
         this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public char getGenero() {
+        return genero;
+    }
+
+    public GregorianCalendar getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getPassaporte() {
+        return passaporte;
     }
 
     public String getEmail() {
@@ -31,8 +75,10 @@ public class Passageiro {
 
     @Override
     public String toString() {
-        return "Login{" + "email=" + email + ", senha=" + senha + '}';
+        return "Passageiro{" + "nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", dataNascimento=" + dataNascimento + ", email=" + email + ", rg=" + rg + ", cpf=" + cpf + ", passaporte=" + passaporte + ", senha=" + senha + '}';
     }
+
+    
     
     
     
