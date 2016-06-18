@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.apresentacao;
 
-import br.pucrs.sisinfo.negocio.controller.LoginController;
+import br.pucrs.sisinfo.negocio.controller.PassageiroController;
 import br.pucrs.sisinfo.app.helper.ApplicationHelper;
 import com.google.inject.Inject;
 import java.io.UnsupportedEncodingException;
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    public final LoginController controller = new LoginController();
+    public final PassageiroController controller = new PassageiroController();
     
     //TODO: Adicionar a injeção de dependencias no contrutor
     @Inject
@@ -91,7 +91,7 @@ public class Login extends javax.swing.JFrame {
 
     private void logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logarActionPerformed
 
-        int validador = new LoginController().buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
+        int validador = new PassageiroController().buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
         switch (validador) {
             case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", 0);

@@ -15,7 +15,8 @@ import java.util.logging.Logger;
 public class PassageirosDaoJdbc {
 
     private static final String SELECT = "SELECT id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte, senha FROM passageiros";
-
+    private static final String INSERT = "INSERT INTO Passageiros (id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte, senha) values(?,?,?,?,?,?,?,?,?,?,?)";
+    
     private Connection conexao;
 
     @Inject
@@ -50,7 +51,7 @@ public class PassageirosDaoJdbc {
         return aeroportos;
     }
     
-    public boolean checarEmail(String email, String senha){
+    public boolean checarLogin(String email, String senha){
         
         try {
             PreparedStatement statement = conexao.prepareStatement("SELECT senha FROM passageiros WHERE email = " + email);

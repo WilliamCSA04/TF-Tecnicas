@@ -5,18 +5,17 @@
  */
 package br.pucrs.sisinfo.negocio.controller;
 import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
-import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 
-public class LoginController {
+public class PassageiroController {
     
     private final static String emailRegularExpression = "^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\\.)+[A-Z]{2,}$";
     private Passageiro model;
 
-    public LoginController() {
+    public PassageiroController() {
 
     }
     
@@ -26,7 +25,7 @@ public class LoginController {
         if(!validadorEmail(email.toUpperCase())){
             return 0;
         }
-        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){
+        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){ //TODO substituir esse if pelo metodo checarLogin da classe PassageirosDaoJdbc.
             return 1;
         }
         return -1;
