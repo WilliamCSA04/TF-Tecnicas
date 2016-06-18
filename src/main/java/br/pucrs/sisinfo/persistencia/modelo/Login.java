@@ -5,8 +5,6 @@
  */
 package br.pucrs.sisinfo.persistencia.modelo;
 
-import br.pucrs.sisinfo.persistencia.dao.LoginDao;
-
 /**
  *
  * @author Joseane Wichrowski
