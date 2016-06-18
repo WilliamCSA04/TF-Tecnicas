@@ -1,6 +1,8 @@
 package br.pucrs.sisinfo.interpretadores;
 
-import br.pucrs.sisinfo.exceptions.InterpretadorException;
+import br.pucrs.sisinfo.negocio.services.interpretadores.Interpretador;
+import br.pucrs.sisinfo.negocio.services.interpretadores.InterpretadorDeDataBrasileira;
+import br.pucrs.sisinfo.app.exceptions.InterpretadorException;
 import org.junit.Before;
 import org.junit.Test;
 
