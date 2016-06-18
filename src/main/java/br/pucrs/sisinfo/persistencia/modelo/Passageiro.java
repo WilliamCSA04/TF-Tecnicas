@@ -20,23 +20,33 @@ public class Passageiro {
     private String sobrenome;
     private String genero;
     private GregorianCalendar dataNascimento;
+    private String endereco;
     private String email;
     private String rg;
     private String cpf;
     private String passaporte;
     private String senha;
 
-    public Passageiro(int id, String nome, String sobrenome, String genero, GregorianCalendar dataNascimento, String email, String rg, String cpf, String passaporte, String senha) {
+    public Passageiro(int id, String nome, String sobrenome, String genero, GregorianCalendar dataNascimento, String endereco, String email, String rg, String cpf, String passaporte, String senha) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.genero = genero;
         this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
         this.email = email;
         this.rg = rg;
         this.cpf = cpf;
         this.passaporte = passaporte;
         this.senha = senha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getEndereco() {
+        return endereco;
     }
 
     public String getNome() {
