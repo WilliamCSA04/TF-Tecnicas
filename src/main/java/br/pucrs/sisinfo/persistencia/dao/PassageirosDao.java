@@ -12,7 +12,7 @@ import br.pucrs.sisinfo.persistencia.modelo.Login;
  * @author Dell Inc
  */
 
-public interface LoginDao extends Inserter<Login>{
+public interface PassageirosDao extends Inserter<Login>{
 
     
 }
