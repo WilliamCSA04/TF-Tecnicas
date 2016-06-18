@@ -13,14 +13,31 @@ import br.pucrs.sisinfo.persistencia.dao.LoginDao;
  */
 public class Login {
 
-    private LoginDao dao;
-    
-    public Login() {
-        dao = new LoginDao();
+    private String email;
+    private String senha;
+
+    public Login(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" + "email=" + email + ", senha=" + senha + '}';
     }
     
-    public boolean checarLogin(String email){
-       return dao.buscaPorEmail(email) != null;
-    }
+    
+    
+    
+    
+   
     
 }

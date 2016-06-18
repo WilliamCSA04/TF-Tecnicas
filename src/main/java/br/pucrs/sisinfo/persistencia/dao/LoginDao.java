@@ -5,43 +5,13 @@
  */
 package br.pucrs.sisinfo.persistencia.dao;
 
-import java.util.List;
+import br.pucrs.sisinfo.persistencia.domain.Login;
+
 
 /**
  *
- * @author Joseane Wichrowski
+ * @author Dell Inc
  */
-public class LoginDao implements CrudDao{
-
-    @Override
-    public int inserir(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean atualizar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deletar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List todos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object buscarPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public interface LoginDao extends Inserter<Login>{
     
-    //TODO: Terminar metodo quando banco estiver completo
-    public Object buscaPorEmail(String email){
-        return null;
-    }
-    
-   
 }

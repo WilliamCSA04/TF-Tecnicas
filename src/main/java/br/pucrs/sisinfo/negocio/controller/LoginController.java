@@ -20,7 +20,7 @@ public class LoginController {
     private Login model;
 
     public LoginController() {
-        model = new Login();
+
     }
     
     
@@ -30,7 +30,7 @@ public class LoginController {
             return 0;
         }
         //Tirar primeiro operador do || após a finalização do metodo de chegarLogin e seus dependencias.
-        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha") || model.checarLogin(email)){
+        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){
             return 1;
         }
         return -1;
