@@ -1,10 +1,10 @@
 package br.pucrs.sisinfo.persistencia.seeding.parsing;
 
 import br.pucrs.sisinfo.persistencia.modelo.Aeroporto;
+import br.pucrs.sisinfo.persistencia.seeding.Seeding;
 
 public class AeroportoLineParser implements LineParser<Aeroporto> {
     
-    private static final String TAB = "\\t";
     private static final int IDENTIFICADOR_INDEX = 0;
     private static final int NOME_INDEX = 3;
     
@@ -12,9 +12,9 @@ public class AeroportoLineParser implements LineParser<Aeroporto> {
     @Override
     public Aeroporto parse(String line) {
         
-        String[] columns = line.split(TAB);
+        String[] columns = line.split(Seeding.SEPARATOR);
         
-        return new Aeroporto(columns[NOME_INDEX], columns[IDENTIFICADOR_INDEX]);
+        return new Aeroporto(columns[IDENTIFICADOR_INDEX], columns[NOME_INDEX]);
                 
     }
     

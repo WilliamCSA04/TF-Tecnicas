@@ -13,6 +13,8 @@ import br.pucrs.sisinfo.persistencia.dao.AeroportoDao;
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDaoJdbc;
 import br.pucrs.sisinfo.persistencia.dao.CompanhiaAereaDao;
 import br.pucrs.sisinfo.persistencia.dao.CompanhiaAereaDaoJdbc;
+import br.pucrs.sisinfo.persistencia.dao.RotaDao;
+import br.pucrs.sisinfo.persistencia.dao.RotaDaoJdbc;
 import com.google.inject.Scopes;
 
 public class GuiceConfig extends AbstractModule{
@@ -30,6 +32,9 @@ public class GuiceConfig extends AbstractModule{
         
         bind(AeroportoDao.class)
                 .to(AeroportoDaoJdbc.class);
+        
+        bind(RotaDao.class)
+                .to(RotaDaoJdbc.class);
         
         bind(CompanhiaAereaDao.class)
                 .to(CompanhiaAereaDaoJdbc.class);

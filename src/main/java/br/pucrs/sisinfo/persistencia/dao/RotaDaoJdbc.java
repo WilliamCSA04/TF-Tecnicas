@@ -21,7 +21,7 @@ public class RotaDaoJdbc implements RotaDao{
     }
     
     @Override
-    public void inserir(Rota rota) {
+    public void insert(Rota rota) {
         
         try {
             

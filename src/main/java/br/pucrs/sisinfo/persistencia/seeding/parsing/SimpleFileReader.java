@@ -16,6 +16,7 @@ public class SimpleFileReader implements FileReader<String> {
     public List<String> readFile() throws IOException{
         return Files
                 .lines(filePath, Charset.forName("ISO-8859-1"))
+                .filter(line -> line.charAt(0) != '#')
                 .collect(Collectors.toList()); 
     }
    

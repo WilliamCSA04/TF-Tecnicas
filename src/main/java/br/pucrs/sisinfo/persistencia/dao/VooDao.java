@@ -5,6 +5,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 
-public interface VooDao{
+public interface VooDao extends Inserter<Voo>{
     List<Voo> buscarPorData(GregorianCalendar data);
 }

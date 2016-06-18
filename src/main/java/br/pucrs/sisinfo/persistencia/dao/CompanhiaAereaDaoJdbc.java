@@ -20,7 +20,7 @@ public class CompanhiaAereaDaoJdbc implements CompanhiaAereaDao{
     }
     
     @Override
-    public void inserir(CompanhiaAerea companhia) {
+    public void insert(CompanhiaAerea companhia) {
         try {
             
             PreparedStatement statement = conexao.prepareStatement(INSERT);

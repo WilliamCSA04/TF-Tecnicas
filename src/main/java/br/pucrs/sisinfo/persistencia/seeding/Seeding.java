@@ -10,6 +10,13 @@ import java.util.logging.Logger;
 
 public class Seeding {
     
+    private static final String SEED_FILE_BASE_PATH = "src/main/java/resources/seed/%s.dat";
+    public static final String SEPARATOR = "\t";
+    
+    public static String seedingPathFor(String fileName) {
+        return String.format(SEED_FILE_BASE_PATH, fileName);
+    }
+    
     private List<FileSeed> seeds;
     private SimpleFileReader reader;
     
@@ -34,7 +41,7 @@ public class Seeding {
                         .readFile()
                         .stream()
                         .map(seed.parser()::parse)
-                        .forEach(seed.inserter()::inserir);
+                        .forEach(seed.inserter()::insert);
                 
             } catch (IOException ex) {
                 Logger.getLogger(Seeding.class.getName()).log(Level.SEVERE, null, ex);

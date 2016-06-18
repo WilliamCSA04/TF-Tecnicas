@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 
 public class AeroportoDaoJdbc implements AeroportoDao{
     
-    private static final String SELECT = "SELECT id, nome, identificador FROM aeroportos";
-    private static final String INSERT = "INSERT INTO aeroportos (nome, identificador) VALUES(?, ?)";
+    private static final String SELECT = "SELECT id, nome FROM aeroportos";
+    private static final String INSERT = "INSERT INTO aeroportos (id, nome) VALUES(?, ?)";
     
     private Connection conexao;
     
@@ -36,7 +36,7 @@ public class AeroportoDaoJdbc implements AeroportoDao{
             ResultSet result = statement.executeQuery();
             
             while(result.next()) {
-                Aeroporto aeroporto = new Aeroporto(result.getInt("id"), result.getString("nome"), result.getString("identificador"));
+                Aeroporto aeroporto = new Aeroporto(result.getString("id"), result.getString("nome"));
                 aeroportos.add(aeroporto);
             }
             
@@ -57,13 +57,13 @@ public class AeroportoDaoJdbc implements AeroportoDao{
     }
 
     @Override
-    public void inserir(Aeroporto aeroporto) {
+    public void insert(Aeroporto aeroporto) {
         try {
             
             PreparedStatement statement = conexao.prepareStatement(INSERT);
             
-            statement.setString(1, aeroporto.getNome());
-            statement.setString(2, aeroporto.getIdentificador());
+            statement.setString(1, aeroporto.getId());
+            statement.setString(2, aeroporto.getNome());
             
             statement.execute();
             statement.close();

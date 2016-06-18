@@ -1,19 +1,15 @@
 package br.pucrs.sisinfo.app;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
-import br.pucrs.sisinfo.persistencia.modelo.Rota;
 import br.pucrs.sisinfo.persistencia.seeding.AeroportoFileSeed;
 import br.pucrs.sisinfo.persistencia.seeding.Seeding;
 import br.pucrs.sisinfo.persistencia.seeding.RotaFileSeed;
-import br.pucrs.sisinfo.persistencia.seeding.parsing.RotaLineParser;
-import br.pucrs.sisinfo.persistencia.seeding.parsing.SimpleFileReader;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 
 public class JAirlines {

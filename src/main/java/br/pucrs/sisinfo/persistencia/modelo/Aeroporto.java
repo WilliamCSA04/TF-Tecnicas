@@ -1,22 +1,15 @@
 package br.pucrs.sisinfo.persistencia.modelo;
 
 public class Aeroporto {
-    private int id;
+    private String id;
     private String nome;
-    private String identificador;
 
-    public Aeroporto(int id, String nome, String identificador) {
+    public Aeroporto(String id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.identificador = identificador;
     }
 
-    public Aeroporto(String nome, String identificador) {
-        this.nome = nome;
-        this.identificador = identificador;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -24,19 +17,8 @@ public class Aeroporto {
         return nome;
     }
 
-    public String getIdentificador() {
-        return identificador;
-    }
-
     @Override
     public String toString() {
-        return "Aeroporto{" + "id=" + id + ", nome=" + nome + ", identificador=" + identificador + '}';
+        return "Aeroporto{" + "id=" + id + ", nome=" + nome + '}';
     }
-    
-    
-    
-    
-    
-    
-    
 }
