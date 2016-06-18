@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.apresentacao;
 
-import br.pucrs.sisinfo.persistencia.domain.Voo;
+import br.pucrs.sisinfo.persistencia.modelo.Voo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.negocio.services;
 
-import br.pucrs.sisinfo.persistencia.domain.Voo;
+import br.pucrs.sisinfo.persistencia.modelo.Voo;
 
 import java.util.GregorianCalendar;
 import java.util.List;

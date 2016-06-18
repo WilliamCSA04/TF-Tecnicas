@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.persistencia.seeding.parsing;
 
-import br.pucrs.sisinfo.persistencia.domain.CompanhiaAerea;
+import br.pucrs.sisinfo.persistencia.modelo.CompanhiaAerea;
 
 public class CompanhiaAereaLineParser implements LineParser<CompanhiaAerea>{
     

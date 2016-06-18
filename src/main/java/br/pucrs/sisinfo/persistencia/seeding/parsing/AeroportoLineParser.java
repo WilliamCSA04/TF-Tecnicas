@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.persistencia.seeding.parsing;
 
-import br.pucrs.sisinfo.persistencia.domain.Aeroporto;
+import br.pucrs.sisinfo.persistencia.modelo.Aeroporto;
 
 public class AeroportoLineParser implements LineParser<Aeroporto> {
     

@@ -7,11 +7,12 @@ package br.pucrs.sisinfo.persistencia.dao;
 
 import br.pucrs.sisinfo.persistencia.domain.Login;
 
-
 /**
  *
  * @author Dell Inc
  */
+
 public interface LoginDao extends Inserter<Login>{
+
     
 }

@@ -1,4 +1,4 @@
-package br.pucrs.sisinfo.persistencia.domain;
+package br.pucrs.sisinfo.persistencia.modelo;
 
 public class Voo {
     

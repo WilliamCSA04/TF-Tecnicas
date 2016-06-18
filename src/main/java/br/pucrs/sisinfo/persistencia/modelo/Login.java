@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.pucrs.sisinfo.persistencia.domain;
+package br.pucrs.sisinfo.persistencia.modelo;
 
 import br.pucrs.sisinfo.persistencia.dao.LoginDao;
 

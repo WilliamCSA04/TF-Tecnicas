@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.negocio.controller;
 
-import br.pucrs.sisinfo.persistencia.domain.Voo;
+import br.pucrs.sisinfo.persistencia.modelo.Voo;
 
 import java.util.*;
 

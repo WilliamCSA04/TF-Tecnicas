@@ -5,7 +5,7 @@
  */
 package br.pucrs.sisinfo.negocio.controller;
 
-import br.pucrs.sisinfo.persistencia.domain.Login;
+import br.pucrs.sisinfo.persistencia.modelo.Login;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

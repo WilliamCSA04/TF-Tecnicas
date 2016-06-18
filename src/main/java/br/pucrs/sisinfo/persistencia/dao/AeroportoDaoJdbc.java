@@ -1,6 +1,6 @@
 package br.pucrs.sisinfo.persistencia.dao;
 
-import br.pucrs.sisinfo.persistencia.domain.Aeroporto;
+import br.pucrs.sisinfo.persistencia.modelo.Aeroporto;
 import com.google.inject.Inject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
