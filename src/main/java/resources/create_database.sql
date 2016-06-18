@@ -1,18 +1,23 @@
 CREATE TABLE IF NOT EXISTS aeroportos(
-    id SERIAL,
+    id VARCHAR,
     nome VARCHAR,
-    identificador VARCHAR,
 
-    CONSTRAINT PK_AEROPORTOS PRIMARY KEY (id),
-    CONSTRAINT AK_AEROPORTOS_IDENTIFICADOR UNIQUE(identificador)
+    CONSTRAINT PK_AEROPORTOS PRIMARY KEY (id)
 );
 
 
-CREATE TABLE IF NOT EXISTS companhias_aereas (
-    id SERIAL,
-    nome VARCHAR,
-    identificador VARCHAR,
+CREATE TABLE IF NOT EXISTS voos (
+    id VARCHAR,
 
-    CONSTRAINT PK_COMPANHIAS_AEREAS PRIMARY KEY (id),
-    CONSTRAINT AK_COMPANHIAS_AEREAS_IDENTIFICADOR UNIQUE(identificador)
+    CONSTRAINT PK_VOOS PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS rotas(
+    
+    origem VARCHAR,
+    destino VARCHAR,
+
+    CONSTRAINT fk_rotas_origem FOREIGN KEY (origem) REFERENCES aeroportos (id),
+    CONSTRAINT fk_rotas_destino FOREIGN KEY (destino) REFERENCES aeroportos (id)
+
 );
