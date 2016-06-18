@@ -53,7 +53,7 @@ public class PassageirosDaoJdbc {
     }
     
     public void insert(Passageiro passageiros){
-        //id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte 
+        
         try {
             
             PreparedStatement statement = conexao.prepareStatement(INSERT);

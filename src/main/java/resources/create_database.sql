@@ -21,3 +21,18 @@ CREATE TABLE IF NOT EXISTS rotas(
     CONSTRAINT fk_rotas_destino FOREIGN KEY (destino) REFERENCES aeroportos (id)
 
 );
+--id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte 
+CREATE TABLE IF NOT EXISTS passageiros{
+    
+    id VARCHAR,
+    nome VARCHAR,
+    sobrenome VARCHAR,
+    genero VARCHAR,   
+    data_nascimento DATE,
+    endereco VARCHAR,
+    email VARCHAR,
+    rg VARCHAR,
+    cpf VARCHAR,
+    passaporte VARCHAR,
+    senha VARCHAR
+};
