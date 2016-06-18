@@ -15,9 +15,10 @@ import java.util.GregorianCalendar;
  */
 public class Passageiro {
 
+    private int id;
     private String nome;
     private String sobrenome;
-    private char genero;
+    private String genero;
     private GregorianCalendar dataNascimento;
     private String email;
     private String rg;
@@ -25,7 +26,8 @@ public class Passageiro {
     private String passaporte;
     private String senha;
 
-    public Passageiro(String nome, String sobrenome, char genero, GregorianCalendar dataNascimento, String email, String rg, String cpf, String passaporte, String senha) {
+    public Passageiro(int id, String nome, String sobrenome, String genero, GregorianCalendar dataNascimento, String email, String rg, String cpf, String passaporte, String senha) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.genero = genero;
@@ -45,7 +47,7 @@ public class Passageiro {
         return sobrenome;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
