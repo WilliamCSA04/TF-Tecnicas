@@ -1,8 +1,9 @@
-package br.pucrs.sisinfo.persistencia.seeding.insertions;
+package br.pucrs.sisinfo.persistencia.seeding;
 
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDao;
 import br.pucrs.sisinfo.persistencia.dao.Inserter;
 import br.pucrs.sisinfo.persistencia.domain.Aeroporto;
+import br.pucrs.sisinfo.persistencia.seeding.insertions.FileSeed;
 import br.pucrs.sisinfo.persistencia.seeding.parsing.AeroportoLineParser;
 import br.pucrs.sisinfo.persistencia.seeding.parsing.LineParser;
 import com.google.inject.Inject;

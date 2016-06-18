@@ -1,5 +1,6 @@
-package br.pucrs.sisinfo.persistencia.seeding.insertions;
+package br.pucrs.sisinfo.persistencia.seeding;
 
+import br.pucrs.sisinfo.persistencia.seeding.insertions.FileSeed;
 import br.pucrs.sisinfo.persistencia.seeding.parsing.SimpleFileReader;
 import com.google.inject.Inject;
 import java.io.IOException;
