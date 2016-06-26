@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class PassageiroController {
     
-    private final static String emailRegularExpression = "^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\\.)+[A-Z]{2,}$";
+    private final static String emailRegularExpression = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
     private Passageiro model;
 
     public PassageiroController() {
@@ -20,7 +20,7 @@ public class PassageiroController {
     }
     
     public int buscaUsuario(String email, String senha){
-        if(!validadorEmail(email.toUpperCase())){
+        if(!validadorEmail(email)){
             return 0;
         }
         if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){ //TODO substituir esse if pelo metodo checarLogin da classe PassageirosDaoJdbc.

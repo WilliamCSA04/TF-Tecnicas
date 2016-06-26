@@ -12,7 +12,7 @@ public class ConnectionProvider implements Provider<Connection>{
         try {
             
             return DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/tftecnicas", "tftecnicas", "tftecnicas");
+                    .getConnection("jdbc:postgresql://localhost:5432/tftecnicas", "postgres", ".");
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
