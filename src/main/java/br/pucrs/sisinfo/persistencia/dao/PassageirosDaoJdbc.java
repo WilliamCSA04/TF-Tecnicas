@@ -81,6 +81,7 @@ public class PassageirosDaoJdbc implements PassageirosDao {
         }
     }
     
+    @Override
     public boolean checarLogin(String email, String senha){
         
         try {

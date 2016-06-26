@@ -95,6 +95,7 @@ public class Login extends javax.swing.JFrame {
         switch (validador) {
             case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", 0);
+                Menu.main(new String[0]);
                 break;
             case 0:
 

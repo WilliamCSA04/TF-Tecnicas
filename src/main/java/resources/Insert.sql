@@ -98,4 +98,4 @@ insert into PASSAGEIROS (Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Ema
 insert into PASSAGEIROS (Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Email, RG, CPF, Passaporte, Senha) values ('Amanda', 'James', 'F', '03/09/1999', '03 Russell Center', 'ajames2p@free.fr', '1370787757', '98597030003', 'CF257213', 'GUMq1831');
 insert into PASSAGEIROS (Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Email, RG, CPF, Passaporte, Senha) values ('Jessica', 'Castillo', 'F', '17/05/2016', '663 Glendale Circle', 'jcastillo2q@nytimes.com', '1042142727', '88781288301', 'CF651551', 'THowuKb');
 insert into PASSAGEIROS (Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Email, RG, CPF, Passaporte, Senha) values ('Brunne', 'Ellis', 'F', '23/09/2015', '21 Sutherland Center', 'bellis2r@china.com.cn', '1667270650', '73545558002', 'CF915305', 'pCjN17dPa');
-
+insert into PASSAGEIROS (Nome, Sobrenome, Genero, Data_Nascimento, Endereco, Email, RG, CPF, Passaporte, Senha) values ('Valkyria', 'Ragnar', 'F', '23/09/2012', '21 Sutherland Center', 'teste@teste.com', '1667270650', '73545558002', 'CF915305', 'teste');
