@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS rotas(
 
 );
 --id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte 
-CREATE TABLE IF NOT EXISTS passageiros{
+CREATE TABLE IF NOT EXISTS passageiros(
     
     id VARCHAR,
     nome VARCHAR,
@@ -37,16 +37,18 @@ CREATE TABLE IF NOT EXISTS passageiros{
     senha VARCHAR,
 
     CONSTRAINT PK_PASSAGEIROS PRIMARY KEY (id)
-};
+);
 
-CREATE IF NOT EXISTS passagens(
+CREATE TABLE IF NOT EXISTS passagens(
     
     id VARCHAR,
-    rota VARCHAR,
+    origem VARCHAR,
+    destino VARCHAR,
     data_embaque VARCHAR,
     passageiro_id VARCHAR,
 
     CONSTRAINT PK_PASSAGEM PRIMARY KEY (id),
-    CONSTRAINT FK_AEROPORTO FOREIGN KEY (rota) REFERENCES rotas(id),
-    CONSTRAINT FK_PASSAGEIRO FOREIGN KEY (passageiro_id) REFERENCES passageiros(id),
+    CONSTRAINT FK_AEROPORTO_ORIGEM FOREIGN KEY (origem) REFERENCES aeroportos(id),
+    CONSTRAINT FK_AEROPORTO_DESTINO FOREIGN KEY (destino) REFERENCES aeroportos(id),
+    CONSTRAINT FK_PASSAGEIRO FOREIGN KEY (passageiro_id) REFERENCES passageiros(id)
 );
