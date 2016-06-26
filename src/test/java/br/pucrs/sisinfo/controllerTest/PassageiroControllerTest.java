@@ -6,11 +6,6 @@
 package br.pucrs.sisinfo.controllerTest;
 
 import br.pucrs.sisinfo.negocio.controller.PassageiroController;
-import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
-import java.util.GregorianCalendar;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

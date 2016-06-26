@@ -7,15 +7,9 @@ package br.pucrs.sisinfo.controllerTest;
 
 import br.pucrs.sisinfo.negocio.controller.PesquisaController;
 import br.pucrs.sisinfo.negocio.services.interpretadores.Interpretador;
-import br.pucrs.sisinfo.persistencia.modelo.Voo;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Optional;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
