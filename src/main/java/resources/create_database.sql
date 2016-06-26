@@ -34,7 +34,9 @@ CREATE TABLE IF NOT EXISTS passageiros{
     rg VARCHAR,
     cpf VARCHAR,
     passaporte VARCHAR,
-    senha VARCHAR
+    senha VARCHAR,
+
+    CONSTRAINT PK_PASSAGEIROS PRIMARY KEY (id)
 };
 
 CREATE IF NOT EXISTS passagens(
@@ -45,5 +47,6 @@ CREATE IF NOT EXISTS passagens(
     passageiro_id VARCHAR,
 
     CONSTRAINT PK_PASSAGEM PRIMARY KEY (id),
-    CONSTRAINT FK_AEROPORTO FOREIGN KEY (rota) REFERENCES rotas(id)
+    CONSTRAINT FK_AEROPORTO FOREIGN KEY (rota) REFERENCES rotas(id),
+    CONSTRAINT FK_PASSAGEIRO FOREIGN KEY (passageiro_id) REFERENCES passageiros(id),
 );
