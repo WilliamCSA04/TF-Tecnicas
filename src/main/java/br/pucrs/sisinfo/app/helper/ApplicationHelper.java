@@ -1,4 +1,3 @@
-
 package br.pucrs.sisinfo.app.helper;
 
 import java.io.UnsupportedEncodingException;
