@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.pucrs.sisinfo.controller;
+package br.pucrs.sisinfo.controllerTest;
 
 import br.pucrs.sisinfo.negocio.controller.PassageiroController;
 import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
@@ -17,14 +17,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Dell Inc
+ * @author Jader Cunha
  */
 public class PassageiroControllerTest {
     
     private PassageiroController _passageiroController;
-    
-    public PassageiroControllerTest() {
-    }
     
     @BeforeClass
     public static void setUp() {

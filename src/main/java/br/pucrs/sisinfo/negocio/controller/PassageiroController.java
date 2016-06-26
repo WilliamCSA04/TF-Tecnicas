@@ -19,8 +19,6 @@ public class PassageiroController {
 
     }
     
-    
-    
     public int buscaUsuario(String email, String senha){
         if(!validadorEmail(email.toUpperCase())){
             return 0;
