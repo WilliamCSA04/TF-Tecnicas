@@ -24,5 +24,14 @@ public class PesquisaControllerTest {
     @BeforeClass
     public static void setUpClass() {
         PesquisaController pesquisa = new PesquisaController();
+    }
+
+    public void buscaVooPorData(){    
+        
+        GregorianCalendar dataEsperada = new GregorianCalendar(2016,4,17);
+
+        Optional<GregorianCalendar> dataInterpretada = interpretador.interpretar("17/05/2016");
+
+        assertEquals("Uma lista de acordo com a data ", pesquisa.buscaVoosPorData(dataInterpretada));
     }    
 }
