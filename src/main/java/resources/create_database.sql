@@ -36,3 +36,14 @@ CREATE TABLE IF NOT EXISTS passageiros{
     passaporte VARCHAR,
     senha VARCHAR
 };
+
+CREATE IF NOT EXISTS passagens(
+    
+    id VARCHAR,
+    rota VARCHAR,
+    data_embaque VARCHAR,
+    passageiro_id VARCHAR,
+
+    CONSTRAINT PK_PASSAGEM PRIMARY KEY (id),
+    CONSTRAINT FK_AEROPORTO FOREIGN KEY (rota) REFERENCES rotas(id)
+);
