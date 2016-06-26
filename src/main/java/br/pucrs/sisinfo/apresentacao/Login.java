@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 public class Login extends javax.swing.JFrame {
 
@@ -94,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         int validador = new PassageiroController().buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
         switch (validador) {
             case 1:
-                JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", 0);
+                JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", INFORMATION_MESSAGE);
                 Menu.main(new String[0]);
                 break;
             case 0:
