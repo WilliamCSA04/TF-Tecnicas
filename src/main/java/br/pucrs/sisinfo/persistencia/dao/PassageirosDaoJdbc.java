@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PassageirosDaoJdbc {
+public class PassageirosDaoJdbc implements PassageirosDao {
 
-    private static final String SELECT = "SELECT id, nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte, senha FROM passageiros";
+    private static final String SELECT = "SELECT * FROM passageiros";
     private static final String INSERT = "INSERT INTO Passageiros (nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte, senha) values(?,?,?,?,?,?,?,?,?,?,?)";
     
     private Connection conexao;
@@ -25,9 +25,6 @@ public class PassageirosDaoJdbc {
         this.conexao = conexao;
     }
 
-    public PassageirosDaoJdbc() {
-        
-    }
 
     public List<Passageiro> todos() {
         List<Passageiro> aeroportos = new ArrayList<>();
@@ -87,9 +84,16 @@ public class PassageirosDaoJdbc {
     public boolean checarLogin(String email, String senha){
         
         try {
-            PreparedStatement statement = conexao.prepareStatement("SELECT senha FROM passageiros WHERE email = " + email);
+            PreparedStatement statement = conexao.prepareStatement("SELECT senha FROM passageiros WHERE email = ?");
+            statement.setString(1, email);
             ResultSet result = statement.executeQuery();
-            if(result.getString("senha").equals(senha)) return true;
+            result.next();
+            boolean senhaCorreta = result.getString("senha").equals(senha);
+            if(senhaCorreta) {
+                statement.execute();
+                statement.close();
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PassageirosDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }

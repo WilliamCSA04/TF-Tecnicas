@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package br.pucrs.sisinfo.negocio.controller;
+import br.pucrs.sisinfo.app.config.guice.providers.ConnectionProvider;
+import br.pucrs.sisinfo.persistencia.dao.PassageirosDao;
 import br.pucrs.sisinfo.persistencia.dao.PassageirosDaoJdbc;
-import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,10 +15,10 @@ import java.util.regex.Pattern;
 public class PassageiroController {
     
     private final static String emailRegularExpression = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-    private Passageiro model;
+    private PassageirosDao passageiros;
 
     public PassageiroController() {
-
+        passageiros =new PassageirosDaoJdbc(new ConnectionProvider().get());
     }
     
     public int buscaUsuario(String email, String senha){
@@ -25,7 +26,7 @@ public class PassageiroController {
             return 0;
         }
         
-        if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){ //TODO substituir esse if pelo metodo checarLogin da classe PassageirosDaoJdbc.
+        if(passageiros.checarLogin(email, senha)){ //TODO substituir esse if pelo metodo checarLogin da classe PassageirosDaoJdbc.
             return 1;
         }
         return -1;
