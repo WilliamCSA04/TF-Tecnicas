@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.pucrs.sisinfo.negocio.controller;
+import br.pucrs.sisinfo.persistencia.dao.PassageirosDaoJdbc;
 import br.pucrs.sisinfo.persistencia.modelo.Passageiro;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ public class PassageiroController {
         if(!validadorEmail(email)){
             return 0;
         }
+        
         if(email.equalsIgnoreCase("mel@caomenor.com") && senha.equals("melzinha")){ //TODO substituir esse if pelo metodo checarLogin da classe PassageirosDaoJdbc.
             return 1;
         }

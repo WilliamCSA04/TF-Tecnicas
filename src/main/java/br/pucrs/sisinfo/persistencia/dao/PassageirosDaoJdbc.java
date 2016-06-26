@@ -25,6 +25,10 @@ public class PassageirosDaoJdbc {
         this.conexao = conexao;
     }
 
+    public PassageirosDaoJdbc() {
+        
+    }
+
     public List<Passageiro> todos() {
         List<Passageiro> aeroportos = new ArrayList<>();
 
