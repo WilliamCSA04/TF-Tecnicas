@@ -1,12 +1,18 @@
 
 package br.pucrs.sisinfo.apresentacao;
 
+import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+
 public class Menu extends javax.swing.JFrame {
-
-
     
+    Pesquisa pesquisa;
     
-    public Menu() {
+    @Inject
+    public Menu(Pesquisa pesquisa) {
+        this.pesquisa = pesquisa;
         initComponents();
     }
 
@@ -76,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        Pesquisa.main(new String[0]);
+        pesquisa.setVisible(true);
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -88,7 +94,11 @@ public class Menu extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                Injector injector = Guice.createInjector(new GuiceConfig());
+                
+                Menu menu = injector.getInstance(Menu.class);
+                
+                menu.setVisible(true);
             }
         });
     }

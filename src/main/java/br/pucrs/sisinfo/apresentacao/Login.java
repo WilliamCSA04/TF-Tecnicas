@@ -15,12 +15,14 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 public class Login extends javax.swing.JFrame {
 
-    public final PassageiroController controller;
+    private final PassageiroController controller;
+    private final Menu menu;
     
     
     @Inject
-    public Login(PassageiroController controller) {
+    public Login(PassageiroController controller, Menu menu) {
         this.controller = controller;
+        this.menu = menu;
  
         
         initComponents();
@@ -101,7 +103,7 @@ public class Login extends javax.swing.JFrame {
         switch (validador) {
             case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", INFORMATION_MESSAGE);
-                Menu.main(new String[0]);
+                menu.setVisible(true);
                 this.dispose();
                 break;
             case 0:
