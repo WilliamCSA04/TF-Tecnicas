@@ -42,7 +42,7 @@ public class VooServiceFacade implements VooService{
     }
     
     private List<Voo> buscaVoos(GregorianCalendar calendar, Aeroporto origem) {
-        return Arrays.asList(null);
+        return Arrays.asList(new Voo("A"));
     }
     
 }
