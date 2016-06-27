@@ -1,25 +1,24 @@
 package br.pucrs.sisinfo.negocio.controller;
 
+import br.pucrs.sisinfo.negocio.services.VooService;
+import br.pucrs.sisinfo.persistencia.modelo.Aeroporto;
 import br.pucrs.sisinfo.persistencia.modelo.Voo;
 
 import java.util.*;
 
 public class PesquisaController {
+    
+    private final VooService vooService;
 
-    public List<Voo> buscaVoosPorData(Optional<GregorianCalendar> data) {
+    public PesquisaController(VooService vooService) {
+        this.vooService = vooService;
+    }
+    
+    
+    public List<Voo> buscaVoosPorData(Aeroporto origem, GregorianCalendar data) {
         
-        Random randomGenerator = new Random();
-        
-        Integer totalFlights = randomGenerator.nextInt(150);
-        
-        List<Voo> voos = new ArrayList<>();
-        
-        for (int i = 0; i < totalFlights; i++) {
-            voos.add(new Voo("Voo " + i));
-        }
-        
-        return voos;
-
+       return vooService.buscaPorData(origem, data);
+       
     }
 
 }
