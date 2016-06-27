@@ -1,8 +1,12 @@
 package br.pucrs.sisinfo.apresentacao;
 
+import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.PassageiroController;
 import br.pucrs.sisinfo.app.helper.ApplicationHelper;
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Stage;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,11 +15,12 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 public class Login extends javax.swing.JFrame {
 
-    public final PassageiroController controller = new PassageiroController();
+    public final PassageiroController controller;
     
     
     @Inject
-    public Login() {
+    public Login(PassageiroController controller) {
+        this.controller = controller;
  
         
         initComponents();
@@ -55,36 +60,36 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(logar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(senhaText))
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(87, 87, 87)
+                            .addComponent(jLabel2))
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(senhaText))
+                    .addComponent(logar))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(senhaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabel2))
         );
 
         pack();
@@ -92,11 +97,12 @@ public class Login extends javax.swing.JFrame {
 
     private void logarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logarActionPerformed
 
-        int validador = new PassageiroController().buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
+        int validador = controller.buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
         switch (validador) {
             case 1:
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", INFORMATION_MESSAGE);
                 Menu.main(new String[0]);
+                this.dispose();
                 break;
             case 0:
 
@@ -123,7 +129,12 @@ public class Login extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                
+                Injector injector = Guice.createInjector(new GuiceConfig());
+                
+                Login login = injector.getInstance(Login.class);
+                
+                login.setVisible(true);
             }
         });
     }

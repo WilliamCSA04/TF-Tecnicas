@@ -11,6 +11,8 @@ import java.util.Optional;
 import br.pucrs.sisinfo.app.config.guice.providers.ConnectionProvider;
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDao;
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDaoJdbc;
+import br.pucrs.sisinfo.persistencia.dao.PassageirosDao;
+import br.pucrs.sisinfo.persistencia.dao.PassageirosDaoJdbc;
 import br.pucrs.sisinfo.persistencia.dao.RotaDao;
 import br.pucrs.sisinfo.persistencia.dao.RotaDaoJdbc;
 import com.google.inject.Scopes;
@@ -27,6 +29,9 @@ public class GuiceConfig extends AbstractModule{
         bind(Connection.class)
                 .toProvider(ConnectionProvider.class)
                 .in(Scopes.SINGLETON);
+        
+        bind(PassageirosDao.class)
+                .to(PassageirosDaoJdbc.class);
         
         bind(AeroportoDao.class)
                 .to(AeroportoDaoJdbc.class);
