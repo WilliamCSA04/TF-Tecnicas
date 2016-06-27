@@ -5,10 +5,12 @@
  */
 package br.pucrs.sisinfo.persistencia.dao;
 
+import br.pucrs.sisinfo.persistencia.modelo.Passagem;
+
 /**
  *
  * @author Joseane Wichrowski
  */
 public interface PassagensDao {
-    
+    public Passagem buscarPassagem(String id);
 }

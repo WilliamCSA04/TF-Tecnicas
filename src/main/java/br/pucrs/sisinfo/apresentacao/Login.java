@@ -6,7 +6,6 @@ import br.pucrs.sisinfo.app.helper.ApplicationHelper;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.google.inject.Stage;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -10,13 +10,7 @@ package br.pucrs.sisinfo.persistencia.modelo;
  * @author 14201805
  */
 public class Passagem {
-    
-//    id VARCHAR,
-//    origem VARCHAR,
-//    destino VARCHAR,
-//    data_embarque VARCHAR,
-//    passageiro_id VARCHAR,
-//    localizador VARCHAR,
+
 private String id;
 private String origem;
 private String destino;
@@ -33,8 +27,6 @@ private String status;
         this.status = status;
     }
 
-    
-
     public String getId() {
         return id;
     }
@@ -47,13 +39,18 @@ private String status;
         return dataEmbarque;
     }
 
+    public String getDestino() {
+        return destino;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     public String getPassageiro_id() {
         return passageiro_id;
     }
 
-    public String getLocalizador() {
-        return status;
-    }
 
 
     

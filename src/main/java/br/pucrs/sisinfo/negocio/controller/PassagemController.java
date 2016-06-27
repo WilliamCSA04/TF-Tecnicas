@@ -8,6 +8,7 @@ package br.pucrs.sisinfo.negocio.controller;
 import br.pucrs.sisinfo.app.config.guice.providers.ConnectionProvider;
 import br.pucrs.sisinfo.persistencia.dao.PassagensDao;
 import br.pucrs.sisinfo.persistencia.dao.PassagensDaoJdbc;
+import br.pucrs.sisinfo.persistencia.modelo.Passagem;
 
 /**
  *
@@ -17,9 +18,13 @@ public class PassagemController {
 
     private PassagensDao passagensDao;
     
-    
+
     public PassagemController() {
         this.passagensDao=new PassagensDaoJdbc(new ConnectionProvider().get());
+    }
+    
+    public Passagem buscarPassagem(String id){
+        return passagensDao.buscarPassagem(id);
     }
     
     
