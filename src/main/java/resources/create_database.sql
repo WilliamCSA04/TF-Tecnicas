@@ -7,16 +7,23 @@ CREATE TABLE IF NOT EXISTS aeroportos(
 
 
 CREATE TABLE IF NOT EXISTS voos (
-    id VARCHAR,
+    id SERIAL,
+    partida TIME,
+    chegada TIME,
+    id_rota INTEGER,
+    data_partida DATE,
 
-    CONSTRAINT PK_VOOS PRIMARY KEY (id)
+    CONSTRAINT PK_VOOS PRIMARY KEY (id),
+    CONSTRAINT FK_VOOS_ROTAS FOREIGN KEY (id_rota) REFERENCES rotas (id)
 );
 
 CREATE TABLE IF NOT EXISTS rotas(
     
+    id SERIAL,
     origem VARCHAR,
     destino VARCHAR,
-
+    
+    CONSTRAINT pk_rotas PRIMARY KEY (id),
     CONSTRAINT fk_rotas_origem FOREIGN KEY (origem) REFERENCES aeroportos (id),
     CONSTRAINT fk_rotas_destino FOREIGN KEY (destino) REFERENCES aeroportos (id)
 
@@ -44,8 +51,9 @@ CREATE TABLE IF NOT EXISTS passagens(
     id VARCHAR,
     origem VARCHAR,
     destino VARCHAR,
-    data_embaque VARCHAR,
+    data_embarque VARCHAR,
     passageiro_id VARCHAR,
+    localizador VARCHAR,
 
     CONSTRAINT PK_PASSAGEM PRIMARY KEY (id),
     CONSTRAINT FK_AEROPORTO_ORIGEM FOREIGN KEY (origem) REFERENCES aeroportos(id),

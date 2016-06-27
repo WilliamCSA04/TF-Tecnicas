@@ -1,29 +1,12 @@
 package br.pucrs.sisinfo.persistencia.modelo;
 
+import java.util.GregorianCalendar;
+
 public class Voo {
     
-    private int id;
-    private String nome;
+    private String id;
+    private Rota rota;
+    private GregorianCalendar data;
     
-    public Voo(int id) {
-        this.id = id;
-    }
-
-    public Voo(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Voo(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-    
-    public int getId() {
-        return id;
-    }
 
 }

@@ -46,7 +46,7 @@ public class VooTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return voos.get(rowIndex).getNome();
+        return voos.get(rowIndex);
     }
 
     @Override

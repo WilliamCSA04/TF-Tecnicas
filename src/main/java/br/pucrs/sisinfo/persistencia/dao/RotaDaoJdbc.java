@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class RotaDaoJdbc implements RotaDao{
     
     private static final String INSERT = "INSERT INTO rotas (origem, destino) VALUES (?, ?)";
+    private static final String SELECT_BY_ORIGEM = "SELECT id, origem, destino FROM rotas WHERE origem = ?";
     
     private final Connection conexao;
     
@@ -39,6 +40,11 @@ public class RotaDaoJdbc implements RotaDao{
             Logger.getLogger(RotaDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @Override
+    public Rota buscarPorOrigem(String idOrigem) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
