@@ -4,3 +4,4 @@ j-airlines.iws
 build/
 .gradle/**/taskArtifacts/*
 /.nb-gradle/
+/nbproject/private/
