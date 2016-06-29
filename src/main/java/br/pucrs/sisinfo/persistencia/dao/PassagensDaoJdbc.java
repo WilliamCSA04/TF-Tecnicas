@@ -6,6 +6,7 @@
 package br.pucrs.sisinfo.persistencia.dao;
 
 import br.pucrs.sisinfo.persistencia.modelo.Passagem;
+import com.google.inject.Inject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +25,7 @@ public class PassagensDaoJdbc implements PassagensDao {
     private Connection conexao;
     private static final String SELECT = "SELECT * FROM passagens";
     
+    @Inject
     public PassagensDaoJdbc(Connection connection) {
         this.conexao=connection;
     }
