@@ -12,16 +12,14 @@ package br.pucrs.sisinfo.persistencia.modelo;
 public class Passagem {
 
 private String id;
-private String origem;
-private String destino;
+private int rota;
 private String dataEmbarque;
 private String passageiro_id;
 private String status;
 
-    public Passagem(String id, String origem, String destino, String dataEmbarque, String passageiro_id, String status) {
+    public Passagem(String id, int rota, String dataEmbarque, String passageiro_id, String status) {
         this.id = id;
-        this.origem = origem;
-        this.destino = destino;
+        this.rota = rota;
         this.dataEmbarque = dataEmbarque;
         this.passageiro_id = passageiro_id;
         this.status = status;
@@ -31,26 +29,23 @@ private String status;
         return id;
     }
 
-    public String getOrigem() {
-        return origem;
+    public int getRota() {
+        return rota;
     }
 
     public String getDataEmbarque() {
         return dataEmbarque;
     }
 
-    public String getDestino() {
-        return destino;
+    public String getPassageiro_id() {
+        return passageiro_id;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public String getPassageiro_id() {
-        return passageiro_id;
-    }
-
+    
 
 
     
