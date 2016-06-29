@@ -5,8 +5,11 @@
  */
 package br.pucrs.sisinfo.apresentacao;
 
+import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.PassagemController;
 import br.pucrs.sisinfo.persistencia.modelo.Passagem;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 /**
  *
@@ -17,11 +20,11 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     /**
      * Creates new form Consulta
      */
-    private static final PassagemController controller = new PassagemController();
+    private final PassagemController controller;
     
     
-    public ConsultaPassagem() {
-        
+    public ConsultaPassagem(PassagemController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -128,8 +131,8 @@ public class ConsultaPassagem extends javax.swing.JFrame {
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         Passagem p = controller.buscarPassagem(campoNumeroPassagem.getText());
-        campoOrigem.setText(p.getOrigem());
-        campoDestino.setText(p.getDestino());
+        campoOrigem.setText(String.valueOf(p.getRota()));
+        campoDestino.setText(String.valueOf(p.getRota()));
         campoData.setText(p.getDataEmbarque());
         campoStatus.setText(p.getStatus());
     }//GEN-LAST:event_pesquisarActionPerformed
@@ -165,7 +168,11 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaPassagem().setVisible(true);
+                Injector injector = Guice.createInjector(new GuiceConfig());
+                
+                ConsultaPassagem consultaPassagem = injector.getInstance(ConsultaPassagem.class);
+                
+                consultaPassagem.setVisible(true);
             }
         });
     }
