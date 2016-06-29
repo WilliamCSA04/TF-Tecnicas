@@ -19,7 +19,7 @@ public class Pesquisa extends javax.swing.JFrame {
     private TableModel tableModelVoos;
     private Aeroporto aeroportoPartida;
     
-    private SelecionarAeroportoDialog selecionarAeroporto;
+    private SelecionarAeroportoJFrame selecionarAeroporto;
     private AeroportoDao dao;
 
     public void setAeroportoPartida(Aeroporto aeroportoPartida) {
@@ -46,7 +46,7 @@ public class Pesquisa extends javax.swing.JFrame {
         
         initComponents();
         
-        selecionarAeroporto = new SelecionarAeroportoDialog(this, dao);
+        selecionarAeroporto = new SelecionarAeroportoJFrame(dao,this);
         selecionarAeroporto.setResizable(false);
         selecionarAeroporto.setModal(true);
         selecionarAeroporto.setVisible(true);
