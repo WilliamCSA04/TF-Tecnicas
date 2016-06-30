@@ -50,12 +50,11 @@ CREATE TABLE IF NOT EXISTS passageiros(
 CREATE TABLE IF NOT EXISTS passagens(
     
     id VARCHAR,
-    rota INTEGER,
-    data_embarque VARCHAR,
+    voo_id INTEGER,
     passageiro_id VARCHAR,
     status VARCHAR,
 
     CONSTRAINT PK_PASSAGEM PRIMARY KEY (id),
-    CONSTRAINT FK_ROTA FOREIGN KEY (rota) REFERENCES rotas(id),
+    CONSTRAINT FK_VOO FOREIGN KEY (voo_id) REFERENCES voos(id),
     CONSTRAINT FK_PASSAGEIRO FOREIGN KEY (passageiro_id) REFERENCES passageiros(id)
 );

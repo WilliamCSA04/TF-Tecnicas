@@ -40,7 +40,7 @@ public class PassagensDaoJdbc implements PassagensDao {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                Passagem passagem = new Passagem(result.getString("id"), result.getInt("rota"), result.getString("data_embarque"), result.getString("passageiro_id"), result.getString("status"));
+                Passagem passagem = new Passagem(result.getString("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
                 passagens.add(passagem);
             }
 
@@ -65,7 +65,7 @@ public class PassagensDaoJdbc implements PassagensDao {
             statement.setString(1, id);
             ResultSet result = statement.executeQuery();
             result.next();
-            p = new Passagem(result.getString("id"), result.getInt("rota"), result.getString("data_embarque"), result.getString("passageiro_id"), result.getString("status"));
+            p = new Passagem(result.getString("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
             return p;
         } catch (SQLException ex) {
             Logger.getLogger(PassagensDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);

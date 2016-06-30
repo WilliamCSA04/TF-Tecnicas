@@ -131,9 +131,9 @@ public class ConsultaPassagem extends javax.swing.JFrame {
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         Passagem p = controller.buscarPassagem(campoNumeroPassagem.getText());
-        campoOrigem.setText(String.valueOf(p.getRota()));
-        campoDestino.setText(String.valueOf(p.getRota()));
-        campoData.setText(p.getDataEmbarque());
+        campoOrigem.setText(String.valueOf(p.getVooID()));
+        campoDestino.setText(String.valueOf(p.getVooID()));
+        campoData.setText(String.valueOf(p.getVooID()));
         campoStatus.setText(p.getStatus());
     }//GEN-LAST:event_pesquisarActionPerformed
 
