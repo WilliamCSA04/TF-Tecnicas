@@ -1,10 +1,2 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- * Author:  William
- * Created: 30/06/2016
- */
-
+insert into mapa_assentos (poltrona1,poltrona2,poltrona3,poltrona4,poltrona5,poltrona6,poltrona7,poltrona8,poltrona9,poltrona10) 
+values (false,false,false,false,false,false,false,false,false,false);

@@ -5,16 +5,22 @@
  */
 package br.pucrs.sisinfo.apresentacao;
 
+import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
+import br.pucrs.sisinfo.negocio.controller.VooController;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+
 /**
  *
  * @author William
  */
 public class ComprarPassagem extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ComprarPassagem
-     */
-    public ComprarPassagem() {
+    VooController vooController;
+    
+    @Inject
+    public ComprarPassagem(VooController vooController) {
         initComponents();
     }
 
@@ -36,6 +42,10 @@ public class ComprarPassagem extends javax.swing.JFrame {
         campoNome = new javax.swing.JTextField();
         campoPassaporte = new javax.swing.JTextField();
         campoRGCPF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        campoData = new javax.swing.JTextField();
+        campoHora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,26 +59,44 @@ public class ComprarPassagem extends javax.swing.JFrame {
 
         jLabel4.setText("RG/CPF:");
 
+        jLabel5.setText("Data:");
+
+        jLabel6.setText("Hora:");
+
+        campoData.setEditable(false);
+        campoData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDataActionPerformed(evt);
+            }
+        });
+
+        campoHora.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(botaoComprar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoData)
                             .addComponent(campoNome)
                             .addComponent(campoPassaporte)
-                            .addComponent(campoVoo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoRGCPF))))
+                            .addComponent(campoVoo)
+                            .addComponent(campoRGCPF)
+                            .addComponent(campoHora))))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,13 +118,25 @@ public class ComprarPassagem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoRGCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(botaoComprar)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,13 +168,18 @@ public class ComprarPassagem extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComprarPassagem().setVisible(true);
-            }
+                
+                Injector injector = Guice.createInjector(new GuiceConfig());
+                ComprarPassagem comprarPassagem = injector.getInstance(ComprarPassagem.class);
+                comprarPassagem.setVisible(true);
+         }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoComprar;
+    private javax.swing.JTextField campoData;
+    private javax.swing.JTextField campoHora;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPassaporte;
     private javax.swing.JTextField campoRGCPF;
@@ -143,5 +188,7 @@ public class ComprarPassagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }
