@@ -55,7 +55,6 @@ public class PassagensDaoJdbc implements PassagensDao {
         return passagens;
     }
     
-    //Testar
     @Override
     public Passagem buscarPassagem(String id){
         
@@ -72,5 +71,7 @@ public class PassagensDaoJdbc implements PassagensDao {
         }
         return null;
     }
+    
+
     
 }
