@@ -9,6 +9,7 @@ import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.PassagemController;
 import br.pucrs.sisinfo.persistencia.modelo.Passagem;
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 /**
@@ -22,7 +23,7 @@ public class ConsultaPassagem extends javax.swing.JFrame {
      */
     private final PassagemController controller;
     
-    
+    @Inject
     public ConsultaPassagem(PassagemController controller) {
         this.controller = controller;
         initComponents();
