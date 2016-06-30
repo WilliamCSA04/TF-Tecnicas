@@ -66,4 +66,8 @@ public class PassagemController {
         }
         return "pendente";
     }
+
+    public void atualizarStatus(int passagemID) {
+        passagensDao.atualizarStatus(passagemID);
+    }
 }

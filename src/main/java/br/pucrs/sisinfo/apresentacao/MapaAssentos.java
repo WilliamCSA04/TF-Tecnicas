@@ -2,15 +2,18 @@ package br.pucrs.sisinfo.apresentacao;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.MapaAssentoController;
+import br.pucrs.sisinfo.negocio.controller.PassagemController;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 
 public class MapaAssentos extends javax.swing.JFrame {
 
-    MapaAssentoController controller;
-    
+    private MapaAssentoController controller;
+    private static int passagemID;
     @Inject
     public MapaAssentos(MapaAssentoController controller) {
         this.controller = controller;
@@ -32,9 +35,7 @@ public class MapaAssentos extends javax.swing.JFrame {
         poltrona9 = new javax.swing.JCheckBox();
         poltrona5 = new javax.swing.JCheckBox();
         poltrona10 = new javax.swing.JCheckBox();
-        botaoConfirmar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1 = new javax.swing.JButton();
 
         poltrona1.setText("Poltrona 1");
 
@@ -56,17 +57,21 @@ public class MapaAssentos extends javax.swing.JFrame {
 
         poltrona10.setText("Poltrona 10");
 
-        botaoConfirmar.setText("Confirmar");
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoConfirmar)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(poltrona5)
                             .addComponent(poltrona4)
@@ -79,7 +84,10 @@ public class MapaAssentos extends javax.swing.JFrame {
                             .addComponent(poltrona7)
                             .addComponent(poltrona8)
                             .addComponent(poltrona9)
-                            .addComponent(poltrona10))))
+                            .addComponent(poltrona10)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jButton1)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,13 +113,18 @@ public class MapaAssentos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(poltrona5)
                     .addComponent(poltrona10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoConfirmar)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        atualizarPoltronas(new boolean[10]);
+        JOptionPane.showMessageDialog(rootPane, "Poltrona Adquirida", "Mapa", INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void updatePoltronas(int idMapa){
         boolean poltronas[] = controller.poltronasOcupadas(idMapa);
@@ -128,33 +141,29 @@ public class MapaAssentos extends javax.swing.JFrame {
         
     }
     
+    private void atualizarPoltronas(boolean poltronas[]){
+        poltronas[0] = poltrona1.isSelected();
+        poltronas[1] = poltrona2.isSelected();
+        poltronas[2] = poltrona3.isSelected();
+        poltronas[3] = poltrona4.isSelected();
+        poltronas[4] = poltrona5.isSelected();
+        poltronas[5] = poltrona6.isSelected();
+        poltronas[6] = poltrona7.isSelected();
+        poltronas[7] = poltrona8.isSelected();
+        poltronas[8] = poltrona9.isSelected();
+        poltronas[9] = poltrona10.isSelected();
+        controller.atualizarPoltronas(poltronas);
+        Injector injector = Guice.createInjector(new GuiceConfig());
+        PassagemController pc = injector.getInstance(PassagemController.class);
+        pc.atualizarStatus(passagemID);
+    }
+    
+    public void saveID(int id) {
+        passagemID=id;
+    }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MapaAssentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MapaAssentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MapaAssentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MapaAssentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                  Injector injector = Guice.createInjector(new GuiceConfig());
@@ -168,7 +177,7 @@ public class MapaAssentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoConfirmar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox poltrona1;
     private javax.swing.JCheckBox poltrona10;
     private javax.swing.JCheckBox poltrona2;
@@ -180,4 +189,6 @@ public class MapaAssentos extends javax.swing.JFrame {
     private javax.swing.JCheckBox poltrona8;
     private javax.swing.JCheckBox poltrona9;
     // End of variables declaration//GEN-END:variables
+
+    
 }

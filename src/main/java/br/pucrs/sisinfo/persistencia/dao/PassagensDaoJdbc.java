@@ -101,6 +101,17 @@ public class PassagensDaoJdbc implements PassagensDao {
         return -1;
     }
     
+    @Override
+    public void atualizarStatus(int id){
+        try {
+            PreparedStatement statement = conexao.prepareStatement("update passagens set status='Check-in ok' WHERE id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PassagensDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     
 }

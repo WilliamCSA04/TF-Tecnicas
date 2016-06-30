@@ -13,4 +13,6 @@ public interface VooDao extends Inserter<Voo>{
     Calendar buscarDataPorID(int id);
     int buscarRota(int id);
     int buscarMapaPorID(int id);
+
+    
 }

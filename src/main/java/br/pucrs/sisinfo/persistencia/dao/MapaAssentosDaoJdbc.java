@@ -34,6 +34,21 @@ public class MapaAssentosDaoJdbc implements MapaAssentosDao{
         return null;
     }
     
+    @Override
+    public void atualizarPoltronas(boolean[] poltronas, int id){
+        try {
+            PreparedStatement statement = conexao.prepareStatement("update mapa_assentos set poltrona1 = ?, poltrona2 = ?, poltrona3 = ?, poltrona4 = ?, poltrona5 = ?, poltrona6 = ?, poltrona7 = ?, poltrona8 = ?, poltrona9 = ?, poltrona10 = ? where id = ?");
+            for(int i=0;i<10;i++){
+                statement.setBoolean(i+1, poltronas[i]);
+            }
+            statement.setInt(11, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MapaAssentosDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     
     
 }

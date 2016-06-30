@@ -16,6 +16,7 @@ public class MapaAssentoController {
     
     
     MapaAssentosDao mapaAssento;
+    public static int idSalvo;
     
     @Inject
     public MapaAssentoController(MapaAssentosDao mapaAssento) {
@@ -23,6 +24,11 @@ public class MapaAssentoController {
     }
     
     public boolean[] poltronasOcupadas(int id){
+        idSalvo=id;
         return mapaAssento.poltronasOcupadas(id);
+    }
+    
+    public void atualizarPoltronas(boolean[] poltronas){
+        mapaAssento.atualizarPoltronas(poltronas, idSalvo);
     }
 }

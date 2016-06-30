@@ -164,7 +164,7 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         Injector injector = Guice.createInjector(new GuiceConfig());
         VooController vc = injector.getInstance(VooController.class);
         int mapaID = vc.buscarMapaPorID(p.getVooID());
-
+        mapaAssentos.saveID(p.getId());
         mapaAssentos.updatePoltronas(mapaID);
         mapaAssentos.setVisible(true);
     }//GEN-LAST:event_botaoCheckinActionPerformed

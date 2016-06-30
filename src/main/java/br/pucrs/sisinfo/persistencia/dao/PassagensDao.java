@@ -8,4 +8,6 @@ public interface PassagensDao {
     public int buscarVoo(String id);
 
     public void registrarCompra(Passagem passagem);
+
+    public void atualizarStatus(int id);
 }
