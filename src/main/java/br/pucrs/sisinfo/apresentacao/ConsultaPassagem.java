@@ -15,10 +15,12 @@ import java.util.Date;
 public class ConsultaPassagem extends javax.swing.JFrame {
 
     private final PassagemController controller;
-
+    private MapaAssentos mapaAssentos;
+    
     @Inject
-    public ConsultaPassagem(PassagemController controller) {
+    public ConsultaPassagem(PassagemController controller, MapaAssentos mapaAssentos) {
         this.controller = controller;
+        this.mapaAssentos = mapaAssentos;
         initComponents();
         botaoCheckin.setEnabled(false);
         campoOrigem.setEditable(false);
@@ -67,6 +69,11 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         });
 
         botaoCheckin.setText("Check in");
+        botaoCheckin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCheckinActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +157,10 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_pesquisarActionPerformed
+
+    private void botaoCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCheckinActionPerformed
+        mapaAssentos.setVisible(true);
+    }//GEN-LAST:event_botaoCheckinActionPerformed
 
     public static void main(String args[]) {
 
