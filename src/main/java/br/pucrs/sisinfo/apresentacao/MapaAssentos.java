@@ -5,6 +5,12 @@
  */
 package br.pucrs.sisinfo.apresentacao;
 
+import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
+import br.pucrs.sisinfo.negocio.controller.MapaAssentoController;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+
 /**
  *
  * @author William
@@ -14,7 +20,12 @@ public class MapaAssentos extends javax.swing.JFrame {
     /**
      * Creates new form mapaAssentos
      */
-    public MapaAssentos() {
+    
+    MapaAssentoController controller;
+    
+    @Inject
+    public MapaAssentos(MapaAssentoController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -149,7 +160,12 @@ public class MapaAssentos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MapaAssentos().setVisible(true);
+                 Injector injector = Guice.createInjector(new GuiceConfig());
+
+                MapaAssentos ma = injector.getInstance(MapaAssentos.class);
+
+                ma.setVisible(true);
+                
             }
         });
     }

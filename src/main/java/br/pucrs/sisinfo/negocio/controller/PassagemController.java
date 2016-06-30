@@ -11,11 +11,12 @@ import static java.util.Calendar.YEAR;
 public class PassagemController {
 
     private PassagensDao passagensDao;
-
+    
     @Inject
     public PassagemController(PassagensDao passagensDao) {
         this.passagensDao = passagensDao;
     }
+    
 
     public Passagem buscarPassagem(String id) {
         return passagensDao.buscarPassagem(id);
