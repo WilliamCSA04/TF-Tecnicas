@@ -14,6 +14,8 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
@@ -22,10 +24,10 @@ import java.util.Calendar;
 public class ComprarPassagem extends javax.swing.JFrame {
 
     VooController vooController;
-    
+
     @Inject
     public ComprarPassagem(VooController vooController) {
-        this.vooController=vooController;
+        this.vooController = vooController;
         initComponents();
     }
 
@@ -151,22 +153,44 @@ public class ComprarPassagem extends javax.swing.JFrame {
         Injector injector = Guice.createInjector(new GuiceConfig());
         PassageiroController lc = injector.getInstance(PassageiroController.class);
         PassagemController pc = injector.getInstance(PassagemController.class);
-        if(Integer.parseInt(campoVoo.getText())%2==0){
+        if (Integer.parseInt(campoVoo.getText()) % 2 == 0) {
             campoRGCPF.setEnabled(false);
-            if(!campoPassaporte.getText().isEmpty()){
+            if (!campoPassaporte.getText().isEmpty()) {
                 boolean pass = lc.checkPassaporte(campoPassaporte.getText());
-                if(pass){
-                    pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()),pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
-                    
+                if (pass) {
+                    pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()), pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
+                    JOptionPane.showMessageDialog(rootPane, "Passagem adquirida", "Passagem", INFORMATION_MESSAGE);
+                }
+            }
+        } else if (!campoPassaporte.getText().isEmpty()) {
+            boolean pass = lc.checkPassaporte(campoPassaporte.getText());
+            if (pass) {
+                pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()), pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
+                JOptionPane.showMessageDialog(rootPane, "Passagem adquirida", "Passagem", INFORMATION_MESSAGE);
+            }
+        } else if (!campoRGCPF.getText().isEmpty()) {
+            boolean pass = lc.checkRG(campoRGCPF.getText());
+            if (pass) {
+                pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()), pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
+                JOptionPane.showMessageDialog(rootPane, "Passagem adquirida", "Passagem", INFORMATION_MESSAGE);
+            } else {
+                pass = lc.checkCPF(campoRGCPF.getText());
+                if (pass) {
+                    pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()), pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
+                    JOptionPane.showMessageDialog(rootPane, "Passagem adquirida", "Passagem", INFORMATION_MESSAGE);
                 }
             }
         }
+        campoRGCPF.setEnabled(true);
     }//GEN-LAST:event_botaoComprarActionPerformed
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        Calendar c = vooController.dataEmbarque(Integer.parseInt(campoVoo.getText()));
-        campoData.setText(c.getTime().toString());
-        
+        if (!campoVoo.getText().isEmpty()) {
+            Calendar c = vooController.dataEmbarque(Integer.parseInt(campoVoo.getText()));
+            campoData.setText(c.getTime().toString());
+        }
+
+
     }//GEN-LAST:event_pesquisarActionPerformed
 
     /**
@@ -199,11 +223,11 @@ public class ComprarPassagem extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 Injector injector = Guice.createInjector(new GuiceConfig());
                 ComprarPassagem comprarPassagem = injector.getInstance(ComprarPassagem.class);
                 comprarPassagem.setVisible(true);
-         }
+            }
         });
     }
 
