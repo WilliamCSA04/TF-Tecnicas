@@ -22,6 +22,13 @@ private String status;
         this.passageiroID = passageiroID;
         this.status = status;
     }
+    
+    public Passagem(int vooID, String passageiroID, String status) {
+
+        this.vooID = vooID;
+        this.passageiroID = passageiroID;
+        this.status = status;
+    }
 
     public String getId() {
         return id;

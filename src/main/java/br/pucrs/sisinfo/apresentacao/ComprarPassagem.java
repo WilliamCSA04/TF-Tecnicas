@@ -6,10 +6,14 @@
 package br.pucrs.sisinfo.apresentacao;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
+import br.pucrs.sisinfo.negocio.controller.PassageiroController;
+import br.pucrs.sisinfo.negocio.controller.PassagemController;
 import br.pucrs.sisinfo.negocio.controller.VooController;
+import br.pucrs.sisinfo.persistencia.modelo.Passagem;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import java.util.Calendar;
 
 /**
  *
@@ -21,6 +25,7 @@ public class ComprarPassagem extends javax.swing.JFrame {
     
     @Inject
     public ComprarPassagem(VooController vooController) {
+        this.vooController=vooController;
         initComponents();
     }
 
@@ -43,13 +48,17 @@ public class ComprarPassagem extends javax.swing.JFrame {
         campoPassaporte = new javax.swing.JTextField();
         campoRGCPF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         campoData = new javax.swing.JTextField();
-        campoHora = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         botaoComprar.setText("Compra");
+        botaoComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoComprarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Voo:");
 
@@ -61,8 +70,6 @@ public class ComprarPassagem extends javax.swing.JFrame {
 
         jLabel5.setText("Data:");
 
-        jLabel6.setText("Hora:");
-
         campoData.setEditable(false);
         campoData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +77,12 @@ public class ComprarPassagem extends javax.swing.JFrame {
             }
         });
 
-        campoHora.setEditable(false);
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,25 +99,26 @@ public class ComprarPassagem extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoData)
                             .addComponent(campoNome)
                             .addComponent(campoPassaporte)
                             .addComponent(campoVoo)
-                            .addComponent(campoRGCPF)
-                            .addComponent(campoHora))))
-                .addContainerGap(203, Short.MAX_VALUE))
+                            .addComponent(campoRGCPF))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pesquisar)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(campoVoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoVoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -123,12 +136,8 @@ public class ComprarPassagem extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
                 .addComponent(botaoComprar)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,6 +146,28 @@ public class ComprarPassagem extends javax.swing.JFrame {
     private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoDataActionPerformed
+
+    private void botaoComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarActionPerformed
+        Injector injector = Guice.createInjector(new GuiceConfig());
+        PassageiroController lc = injector.getInstance(PassageiroController.class);
+        PassagemController pc = injector.getInstance(PassagemController.class);
+        if(Integer.parseInt(campoVoo.getText())%2==0){
+            campoRGCPF.setEnabled(false);
+            if(!campoPassaporte.getText().isEmpty()){
+                boolean pass = lc.checkPassaporte(campoPassaporte.getText());
+                if(pass){
+                    pc.realizarCompra(new Passagem(Integer.parseInt(campoVoo.getText()), String.valueOf(lc.getID()),pc.checarStatus(vooController.dataEmbarque(Integer.parseInt(campoVoo.getText())))));
+                    
+                }
+            }
+        }
+    }//GEN-LAST:event_botaoComprarActionPerformed
+
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        Calendar c = vooController.dataEmbarque(Integer.parseInt(campoVoo.getText()));
+        campoData.setText(c.getTime().toString());
+        
+    }//GEN-LAST:event_pesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +210,6 @@ public class ComprarPassagem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoComprar;
     private javax.swing.JTextField campoData;
-    private javax.swing.JTextField campoHora;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPassaporte;
     private javax.swing.JTextField campoRGCPF;
@@ -189,6 +219,6 @@ public class ComprarPassagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton pesquisar;
     // End of variables declaration//GEN-END:variables
 }

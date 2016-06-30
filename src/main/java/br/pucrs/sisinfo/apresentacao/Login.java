@@ -17,7 +17,6 @@ public class Login extends javax.swing.JFrame {
     private final PassageiroController controller;
     private final Menu menu;
     
-    
     @Inject
     public Login(PassageiroController controller, Menu menu) {
         this.controller = controller;
@@ -101,6 +100,7 @@ public class Login extends javax.swing.JFrame {
         int validador = controller.buscaUsuario(emailText.getText(), String.valueOf(senhaText.getPassword()));
         switch (validador) {
             case 1:
+                controller.salvarPassageiroAtual(emailText.getText());
                 JOptionPane.showMessageDialog(rootPane, "Logado com sucesso", "Login", INFORMATION_MESSAGE);
                 menu.setVisible(true);
                 this.dispose();

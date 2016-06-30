@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS passageiros(
 
 CREATE TABLE IF NOT EXISTS passagens(
     
-    id VARCHAR,
+    id SERIAL,
     voo_id INTEGER,
     passageiro_id VARCHAR,
     status VARCHAR,

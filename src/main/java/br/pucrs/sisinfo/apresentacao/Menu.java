@@ -10,10 +10,13 @@ public class Menu extends javax.swing.JFrame {
     
     Pesquisa pesquisa;
     ConsultaPassagem consultaPassagem;
+    ComprarPassagem comprarPassagem;
+    
     @Inject
-    public Menu(Pesquisa pesquisa, ConsultaPassagem consultaPassagem) {
+    public Menu(Pesquisa pesquisa, ConsultaPassagem consultaPassagem, ComprarPassagem comprarPassagem) {
         this.pesquisa = pesquisa;
         this.consultaPassagem = consultaPassagem;
+        this.comprarPassagem = comprarPassagem;
         initComponents();
     }
 
@@ -24,7 +27,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         pesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoComprar = new javax.swing.JButton();
         consultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +42,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Comprar");
+        botaoComprar.setText("Comprar");
+        botaoComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoComprarActionPerformed(evt);
+            }
+        });
 
         consultar.setText("Consultar");
         consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(consultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(botaoComprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -71,7 +79,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
-                .addComponent(jButton2)
+                .addComponent(botaoComprar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -90,6 +98,10 @@ public class Menu extends javax.swing.JFrame {
         consultaPassagem.setVisible(true);
     }//GEN-LAST:event_consultarActionPerformed
 
+    private void botaoComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarActionPerformed
+        comprarPassagem.setVisible(true);
+    }//GEN-LAST:event_botaoComprarActionPerformed
+
 
     public static void main(String args[]) {
 
@@ -105,8 +117,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoComprar;
     private javax.swing.JButton consultar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton pesquisar;
     // End of variables declaration//GEN-END:variables

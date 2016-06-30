@@ -24,6 +24,7 @@ public class PassagensDaoJdbc implements PassagensDao {
 
     private Connection conexao;
     private static final String SELECT = "SELECT * FROM passagens";
+    private static final String INSERT = "INSERT INTO passagens (voo_id, passageiro_id, status) values (?,?,?)";
     
     @Inject
     public PassagensDaoJdbc(Connection connection) {
@@ -72,6 +73,20 @@ public class PassagensDaoJdbc implements PassagensDao {
         return null;
     }
 
+    @Override
+    public void registrarCompra(Passagem passagem){
+        try {
+            PreparedStatement statement = conexao.prepareStatement(INSERT);
+            statement.setInt(1, passagem.getVooID());
+            statement.setString(2, passagem.getPassageiroID());
+            statement.setString(3, passagem.getStatus());
+            statement.execute();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PassagensDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     public int buscarVoo(String id) {
         try {

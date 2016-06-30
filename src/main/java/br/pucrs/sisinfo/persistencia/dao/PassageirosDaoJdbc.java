@@ -17,14 +17,13 @@ public class PassageirosDaoJdbc implements PassageirosDao {
 
     private static final String SELECT = "SELECT * FROM passageiros";
     private static final String INSERT = "INSERT INTO Passageiros (nome, sobrenome, genero, data_nascimento, endereco, email, rg, cpf, passaporte, senha) values(?,?,?,?,?,?,?,?,?,?,?)";
-    
+
     private Connection conexao;
 
     @Inject
     public PassageirosDaoJdbc(Connection conexao) {
         this.conexao = conexao;
     }
-
 
     public List<Passageiro> todos() {
         List<Passageiro> aeroportos = new ArrayList<>();
@@ -52,13 +51,13 @@ public class PassageirosDaoJdbc implements PassageirosDao {
 
         return aeroportos;
     }
-    
-    public void insert(Passageiro passageiros){
-        
+
+    public void insert(Passageiro passageiros) {
+
         try {
-            
+
             PreparedStatement statement = conexao.prepareStatement(INSERT);
-            
+
             statement.setString(1, passageiros.getNome());
             statement.setString(2, passageiros.getSobrenome());
             statement.setString(3, passageiros.getGenero());
@@ -69,28 +68,27 @@ public class PassageirosDaoJdbc implements PassageirosDao {
             statement.setString(8, passageiros.getCpf());
             statement.setString(9, passageiros.getPassaporte());
             statement.setString(10, passageiros.getSenha());
-            
-            
+
             statement.execute();
             statement.close();
-            
+
             Logger.getLogger(getClass().getName() + " -> INSERT : ").log(Level.INFO, passageiros.toString());
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PassageirosDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
-    public boolean checarLogin(String email, String senha){
-        
+    public boolean checarLogin(String email, String senha) {
+
         try {
             PreparedStatement statement = conexao.prepareStatement("SELECT senha FROM passageiros WHERE email = ?");
             statement.setString(1, email);
             ResultSet result = statement.executeQuery();
             result.next();
             boolean senhaCorreta = result.getString("senha").equals(senha);
-            if(senhaCorreta) {
+            if (senhaCorreta) {
                 statement.execute();
                 statement.close();
                 return true;
@@ -100,6 +98,21 @@ public class PassageirosDaoJdbc implements PassageirosDao {
         }
         return false;
     }
-    
+
+    @Override
+    public Passageiro passageiroLogado(String email) {
+        try {
+            PreparedStatement statement = conexao.prepareStatement(SELECT + " WHERE email = ?");
+            statement.setString(1,email);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            GregorianCalendar dataNascimento = new GregorianCalendar();
+            dataNascimento.setTime(result.getTime("data_nascimento"));
+            return new Passageiro(result.getInt("id"), result.getString("nome"), result.getString("sobrenome"), result.getString("genero"), dataNascimento, result.getString("endereco"), result.getString("email"), result.getString("rg"), result.getString("cpf"), result.getString("passaporte"), result.getString("senha"));
+        } catch (SQLException ex) {
+            Logger.getLogger(PassageirosDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }

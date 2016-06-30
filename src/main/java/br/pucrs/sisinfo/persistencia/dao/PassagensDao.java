@@ -6,4 +6,6 @@ public interface PassagensDao {
     public Passagem buscarPassagem(String id);
 
     public int buscarVoo(String id);
+
+    public void registrarCompra(Passagem passagem);
 }
