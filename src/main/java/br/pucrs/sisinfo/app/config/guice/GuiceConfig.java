@@ -13,6 +13,8 @@ import br.pucrs.sisinfo.negocio.services.VooService;
 import br.pucrs.sisinfo.negocio.services.VooServiceFacade;
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDao;
 import br.pucrs.sisinfo.persistencia.dao.AeroportoDaoJdbc;
+import br.pucrs.sisinfo.persistencia.dao.MapaAssentosDao;
+import br.pucrs.sisinfo.persistencia.dao.MapaAssentosDaoJdbc;
 import br.pucrs.sisinfo.persistencia.dao.PassageirosDao;
 import br.pucrs.sisinfo.persistencia.dao.PassageirosDaoJdbc;
 import br.pucrs.sisinfo.persistencia.dao.PassagensDao;
@@ -53,6 +55,9 @@ public class GuiceConfig extends AbstractModule{
         
         bind(RotaDao.class)
                 .to(RotaDaoJdbc.class);
+        
+        bind(MapaAssentosDao.class)
+                .to(MapaAssentosDaoJdbc.class);
                 
     }
     
