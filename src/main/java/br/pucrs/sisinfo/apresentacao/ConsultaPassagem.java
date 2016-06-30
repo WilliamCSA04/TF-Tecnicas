@@ -15,7 +15,7 @@ import java.util.Date;
 public class ConsultaPassagem extends javax.swing.JFrame {
 
     private final PassagemController controller;
-    
+
     @Inject
     public ConsultaPassagem(PassagemController controller) {
         this.controller = controller;
@@ -119,17 +119,20 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        String textoPassagem = campoNumeroPassagem.getText();
-        Passagem p = controller.buscarPassagem(textoPassagem);
-        Injector injector = Guice.createInjector(new GuiceConfig());
-        VooController vc = injector.getInstance(VooController.class);
-        Calendar dataEmbarque = vc.dataEmbarque(controller.buscarVooPorPassagem(textoPassagem));
-        String[] origemDestino = injector.getInstance(RotaController.class).buscarOrigemDestino(vc.buscarRota(controller.buscarVooPorPassagem(textoPassagem)));
-        AeroportoController ac = injector.getInstance(AeroportoController.class);
-        campoOrigem.setText(ac.buscarPorID(origemDestino[0]));
-        campoDestino.setText(ac.buscarPorID(origemDestino[1]));
-        campoData.setText(new Date(dataEmbarque.getTimeInMillis()).toString());
-        campoStatus.setText(p.getStatus());
+        if (!campoNumeroPassagem.getText().isEmpty()) {
+            String textoPassagem = campoNumeroPassagem.getText();
+            Passagem p = controller.buscarPassagem(textoPassagem);
+            Injector injector = Guice.createInjector(new GuiceConfig());
+            VooController vc = injector.getInstance(VooController.class);
+            Calendar dataEmbarque = vc.dataEmbarque(controller.buscarVooPorPassagem(textoPassagem));
+            String[] origemDestino = injector.getInstance(RotaController.class).buscarOrigemDestino(vc.buscarRota(controller.buscarVooPorPassagem(textoPassagem)));
+            AeroportoController ac = injector.getInstance(AeroportoController.class);
+            campoOrigem.setText(ac.buscarPorID(origemDestino[0]));
+            campoDestino.setText(ac.buscarPorID(origemDestino[1]));
+            campoData.setText(new Date(dataEmbarque.getTimeInMillis()).toString());
+            campoStatus.setText(p.getStatus());
+        }
+
     }//GEN-LAST:event_pesquisarActionPerformed
 
     public static void main(String args[]) {
@@ -137,9 +140,9 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Injector injector = Guice.createInjector(new GuiceConfig());
-                
+
                 ConsultaPassagem consultaPassagem = injector.getInstance(ConsultaPassagem.class);
-                
+
                 consultaPassagem.setVisible(true);
             }
         });

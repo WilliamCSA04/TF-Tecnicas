@@ -11,12 +11,12 @@ package br.pucrs.sisinfo.persistencia.modelo;
  */
 public class Passagem {
 
-private String id;
+private int id;
 private int vooID;
 private String passageiroID;
 private String status;
 
-    public Passagem(String id, int vooID, String passageiroID, String status) {
+    public Passagem(int id, int vooID, String passageiroID, String status) {
         this.id = id;
         this.vooID = vooID;
         this.passageiroID = passageiroID;
@@ -30,7 +30,7 @@ private String status;
         this.status = status;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

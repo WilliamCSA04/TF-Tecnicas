@@ -41,7 +41,7 @@ public class PassagensDaoJdbc implements PassagensDao {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                Passagem passagem = new Passagem(result.getString("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
+                Passagem passagem = new Passagem(result.getInt("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
                 passagens.add(passagem);
             }
 
@@ -62,10 +62,10 @@ public class PassagensDaoJdbc implements PassagensDao {
         try {
             Passagem p;
             PreparedStatement statement = conexao.prepareStatement(SELECT + " where id = ?");
-            statement.setString(1, id);
+            statement.setInt(1, Integer.parseInt(id));
             ResultSet result = statement.executeQuery();
             result.next();
-            p = new Passagem(result.getString("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
+            p = new Passagem(result.getInt("id"), result.getInt("voo_id"), result.getString("passageiro_id"), result.getString("status"));
             return p;
         } catch (SQLException ex) {
             Logger.getLogger(PassagensDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,7 +91,7 @@ public class PassagensDaoJdbc implements PassagensDao {
     public int buscarVoo(String id) {
         try {
             PreparedStatement statement = conexao.prepareStatement("SELECT voo_id FROM passagens WHERE id = ?");
-            statement.setString(1, id);
+            statement.setInt(1, Integer.parseInt(id));
             ResultSet result = statement.executeQuery();
             result.next();
             return result.getInt("voo_id");
