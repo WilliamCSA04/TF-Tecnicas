@@ -20,6 +20,11 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     public ConsultaPassagem(PassagemController controller) {
         this.controller = controller;
         initComponents();
+        botaoCheckin.setEnabled(false);
+        campoOrigem.setEditable(false);
+        campoDestino.setEditable(false);
+        campoData.setEditable(false);
+        campoStatus.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +43,7 @@ public class ConsultaPassagem extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         campoStatus = new javax.swing.JTextField();
         pesquisar = new javax.swing.JButton();
+        botaoCheckin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +65,8 @@ public class ConsultaPassagem extends javax.swing.JFrame {
                 pesquisarActionPerformed(evt);
             }
         });
+
+        botaoCheckin.setText("Check in");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,13 +91,15 @@ public class ConsultaPassagem extends javax.swing.JFrame {
                             .addComponent(campoData, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                             .addComponent(campoStatus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pesquisar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoCheckin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -111,8 +121,9 @@ public class ConsultaPassagem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(campoStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                    .addComponent(campoStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCheckin))
+                .addGap(92, 92, 92))
         );
 
         pack();
@@ -131,6 +142,11 @@ public class ConsultaPassagem extends javax.swing.JFrame {
             campoDestino.setText(ac.buscarPorID(origemDestino[1]));
             campoData.setText(new Date(dataEmbarque.getTimeInMillis()).toString());
             campoStatus.setText(p.getStatus());
+            if(p.getStatus().equalsIgnoreCase("Check-in aberto")){
+                botaoCheckin.setEnabled(true);
+            }else{
+                botaoCheckin.setEnabled(false);
+            }
         }
 
     }//GEN-LAST:event_pesquisarActionPerformed
@@ -149,6 +165,7 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCheckin;
     private javax.swing.JTextField campoData;
     private javax.swing.JTextField campoDestino;
     private javax.swing.JTextField campoNumeroPassagem;
