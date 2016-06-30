@@ -1,11 +1,16 @@
 package br.pucrs.sisinfo.apresentacao;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
+import br.pucrs.sisinfo.negocio.controller.AeroportoController;
 import br.pucrs.sisinfo.negocio.controller.PassagemController;
+import br.pucrs.sisinfo.negocio.controller.RotaController;
+import br.pucrs.sisinfo.negocio.controller.VooController;
 import br.pucrs.sisinfo.persistencia.modelo.Passagem;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ConsultaPassagem extends javax.swing.JFrame {
 
@@ -114,10 +119,16 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        Passagem p = controller.buscarPassagem(campoNumeroPassagem.getText());
-        campoOrigem.setText(String.valueOf(p.getVooID()));
-        campoDestino.setText(String.valueOf(p.getVooID()));
-        campoData.setText(String.valueOf(p.getVooID()));
+        String textoPassagem = campoNumeroPassagem.getText();
+        Passagem p = controller.buscarPassagem(textoPassagem);
+        Injector injector = Guice.createInjector(new GuiceConfig());
+        VooController vc = injector.getInstance(VooController.class);
+        Calendar dataEmbarque = vc.dataEmbarque(controller.buscarVooPorPassagem(textoPassagem));
+        String[] origemDestino = injector.getInstance(RotaController.class).buscarOrigemDestino(vc.buscarRota(controller.buscarVooPorPassagem(textoPassagem)));
+        AeroportoController ac = injector.getInstance(AeroportoController.class);
+        campoOrigem.setText(ac.buscarPorID(origemDestino[0]));
+        campoDestino.setText(ac.buscarPorID(origemDestino[1]));
+        campoData.setText(new Date(dataEmbarque.getTimeInMillis()).toString());
         campoStatus.setText(p.getStatus());
     }//GEN-LAST:event_pesquisarActionPerformed
 

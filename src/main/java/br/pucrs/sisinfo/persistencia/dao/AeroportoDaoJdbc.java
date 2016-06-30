@@ -74,6 +74,20 @@ public class AeroportoDaoJdbc implements AeroportoDao{
     }
 
     @Override
+    public String buscarPorID(String id) {
+        try {
+            PreparedStatement statement = conexao.prepareStatement("select nome from aeroportos where id = ?");
+            statement.setString(1, id);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getString("nome");
+        } catch (SQLException ex) {
+            Logger.getLogger(AeroportoDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    @Override
     public void insert(Aeroporto aeroporto) {
         try {
             
@@ -91,5 +105,7 @@ public class AeroportoDaoJdbc implements AeroportoDao{
             Logger.getLogger(AeroportoDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
     
 }

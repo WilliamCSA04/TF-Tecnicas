@@ -7,5 +7,5 @@ public interface AeroportoDao extends Inserter<Aeroporto>{
     
     List<Aeroporto> todos();
     List<Aeroporto> buscarPorNome(String nome);
-    
+    String buscarPorID(String id);
 }

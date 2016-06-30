@@ -71,6 +71,20 @@ public class PassagensDaoJdbc implements PassagensDao {
         }
         return null;
     }
+
+    @Override
+    public int buscarVoo(String id) {
+        try {
+            PreparedStatement statement = conexao.prepareStatement("SELECT voo_id FROM passagens WHERE id = ?");
+            statement.setString(1, id);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt("voo_id");
+        } catch (SQLException ex) {
+            Logger.getLogger(PassagensDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
     
 
     

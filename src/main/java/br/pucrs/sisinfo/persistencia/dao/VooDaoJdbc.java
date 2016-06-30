@@ -50,6 +50,35 @@ public class VooDaoJdbc implements VooDao{
         return null;
     }
     
+    public Calendar buscarDataPorID(int id){
+        try {
+            PreparedStatement statement = conexao.prepareStatement("select data_partida from voos where id = ?");
+            statement.setInt(1,id);
+            ResultSet result = statement.executeQuery();
+            Calendar c = Calendar.getInstance();
+            result.next(); 
+            c.setTime(result.getDate("data_partida"));
+            return c;
+        } catch (SQLException ex) {
+            Logger.getLogger(VooDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    @Override
+    public int buscarRota(int id) {
+        try {
+            PreparedStatement statement = conexao.prepareStatement("select id_rota from voos where id = ?");
+            statement.setInt(1,id);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt("id_rota");
+        } catch (SQLException ex) {
+            Logger.getLogger(VooDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    
     @Override
     public List<Voo> buscarPorData(GregorianCalendar data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -75,5 +104,7 @@ public class VooDaoJdbc implements VooDao{
     public void insert(Voo t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }
