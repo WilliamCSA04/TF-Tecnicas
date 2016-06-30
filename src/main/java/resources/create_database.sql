@@ -58,3 +58,12 @@ CREATE TABLE IF NOT EXISTS passagens(
     CONSTRAINT FK_VOO FOREIGN KEY (voo_id) REFERENCES voos(id),
     CONSTRAINT FK_PASSAGEIRO FOREIGN KEY (passageiro_id) REFERENCES passageiros(id)
 );
+
+CREATE TABLE IF NOT EXISTS assentos(
+
+    id SERIAL,
+    poltrona INTEGER,
+
+    CONSTRAINT PK_ASSENTO PRIMARY KEY (id)
+
+);
