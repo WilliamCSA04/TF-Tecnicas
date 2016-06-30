@@ -12,4 +12,5 @@ public interface VooDao extends Inserter<Voo>{
     List<Voo> buscarPorData(Aeroporto origem, GregorianCalendar data);
     Calendar buscarDataPorID(int id);
     int buscarRota(int id);
+    int buscarMapaPorID(int id);
 }

@@ -22,5 +22,7 @@ public class MapaAssentoController {
         this.mapaAssento = mapaAssento;
     }
     
-    
+    public boolean[] poltronasOcupadas(int id){
+        return mapaAssento.poltronasOcupadas(id);
+    }
 }

@@ -2,6 +2,7 @@ package br.pucrs.sisinfo.apresentacao;
 
 import br.pucrs.sisinfo.app.config.guice.GuiceConfig;
 import br.pucrs.sisinfo.negocio.controller.AeroportoController;
+import br.pucrs.sisinfo.negocio.controller.MapaAssentoController;
 import br.pucrs.sisinfo.negocio.controller.PassagemController;
 import br.pucrs.sisinfo.negocio.controller.RotaController;
 import br.pucrs.sisinfo.negocio.controller.VooController;
@@ -16,7 +17,7 @@ public class ConsultaPassagem extends javax.swing.JFrame {
 
     private final PassagemController controller;
     private MapaAssentos mapaAssentos;
-    
+
     @Inject
     public ConsultaPassagem(PassagemController controller, MapaAssentos mapaAssentos) {
         this.controller = controller;
@@ -149,9 +150,9 @@ public class ConsultaPassagem extends javax.swing.JFrame {
             campoDestino.setText(ac.buscarPorID(origemDestino[1]));
             campoData.setText(new Date(dataEmbarque.getTimeInMillis()).toString());
             campoStatus.setText(p.getStatus());
-            if(p.getStatus().equalsIgnoreCase("Check-in aberto")){
+            if (p.getStatus().equalsIgnoreCase("Check-in aberto")) {
                 botaoCheckin.setEnabled(true);
-            }else{
+            } else {
                 botaoCheckin.setEnabled(false);
             }
         }
@@ -159,6 +160,12 @@ public class ConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void botaoCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCheckinActionPerformed
+        Passagem p = controller.buscarPassagem(campoNumeroPassagem.getText());
+        Injector injector = Guice.createInjector(new GuiceConfig());
+        VooController vc = injector.getInstance(VooController.class);
+        int mapaID = vc.buscarMapaPorID(p.getVooID());
+
+        mapaAssentos.updatePoltronas(mapaID);
         mapaAssentos.setVisible(true);
     }//GEN-LAST:event_botaoCheckinActionPerformed
 

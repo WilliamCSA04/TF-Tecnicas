@@ -49,6 +49,7 @@ public class VooDaoJdbc implements VooDao {
         return null;
     }
 
+    @Override
     public Calendar buscarDataPorID(int id) {
         try {
             PreparedStatement statement = conexao.prepareStatement("select data_partida from voos where id = ?");
@@ -104,6 +105,20 @@ public class VooDaoJdbc implements VooDao {
     @Override
     public void insert(Voo t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int buscarMapaPorID(int id) {
+        try {
+            PreparedStatement statement = conexao.prepareStatement("select id_mapa_assentos from voos where id = ?");
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt("id_mapa_assentos");
+        } catch (SQLException ex) {
+            Logger.getLogger(VooDaoJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 
 }

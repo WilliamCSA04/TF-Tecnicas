@@ -22,5 +22,7 @@ public class VooController {
         return vooDao.buscarRota(id);
     }
 
-    
+    public int buscarMapaPorID(int id){
+        return vooDao.buscarMapaPorID(id);
+    }
 }
